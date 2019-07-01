@@ -6,9 +6,13 @@ const SudokuSquare = ({ index }) => {
 	const context = useContext(PuzzleContext);
 	const row = context.rowOfSquare(index);
 	const column = context.columnOfSquare(index);
-	const isEveryThirdRow = (context.rowOfSquare(index) + 1) % 3 === 0;
-	const handleClick = () => console.log(`Square #${index} clicked! Row ${row}, Column ${column}`);
-	return <div className={`${styles.square} ${isEveryThirdRow ? styles.thirdRow : ""}`} onClick={handleClick}></div>;
+	const isSelected = context.selectedSquare === index;
+	const handleClick = () => {
+		console.log(`Square #${index} clicked! Row ${row}, Column ${column}`);
+		context.selectSquare(index);
+	};
+	const classNames = [styles.square, (row + 1) % 3 === 0 ? styles.thirdRow : "", isSelected ? styles.selected : ""];
+	return <div className={classNames.join(" ")} onClick={handleClick}></div>;
 };
 
 export default SudokuSquare;

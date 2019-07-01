@@ -2,6 +2,7 @@ import { createContext } from "react";
 
 export const initialState = {
 	grid: Array.apply(null, Array(81)),
+	selectedSquare: null,
 	rowOfSquare: square => Math.trunc(square / 9),
 	columnOfSquare: square => square % 9,
 	setSquare: (grid, index, value) => (grid[index] = value),

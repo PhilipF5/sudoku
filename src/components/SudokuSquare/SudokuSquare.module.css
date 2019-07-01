@@ -8,6 +8,10 @@
 	margin-right: 10px;
 }
 
+.square.selected {
+	border-color: blue;
+}
+
 .thirdRow {
 	margin-bottom: 10px;
 }
