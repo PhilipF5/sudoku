@@ -1,5 +1,5 @@
 .grid {
 	display: flex;
 	flex-wrap: wrap;
-	width: calc(29px * 9.5);
+	width: 100%;
 }
