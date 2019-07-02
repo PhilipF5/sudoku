@@ -3,7 +3,7 @@ import "./App.css";
 import NumberPicker from "./components/NumberPicker/NumberPicker";
 import SudokuGrid from "./components/SudokuGrid/SudokuGrid";
 
-function App() {
+const App = () => {
 	const [grid, setGrid] = useState(Array.apply(null, Array(81)));
 	const [selectedSquare, selectSquare] = useState(null);
 	const setSquare = value => {
@@ -17,6 +17,6 @@ function App() {
 			<NumberPicker setSquare={setSquare} />
 		</div>
 	);
-}
+};
 
 export default App;
