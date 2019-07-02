@@ -1,6 +1,10 @@
 .square {
+	align-items: center;
 	border: 2px solid black;
+	display: flex;
+	font-size: 9vw;
 	height: 10vw;
+	justify-content: center;
 	width: 10vw;
 }
 
