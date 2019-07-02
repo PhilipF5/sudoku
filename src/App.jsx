@@ -1,10 +1,15 @@
+import { SudokuSolver } from "@jlguenego/sudoku-generator";
 import React, { useState } from "react";
 import "./App.css";
 import NumberPicker from "./components/NumberPicker/NumberPicker";
 import SudokuGrid from "./components/SudokuGrid/SudokuGrid";
 
 const App = () => {
-	const [grid, setGrid] = useState(Array.apply(null, Array(81)));
+	const completed = SudokuSolver.generate();
+	const start = SudokuSolver.carve(completed, 55)
+		.flat()
+		.map(value => value || null);
+	const [grid, setGrid] = useState(start);
 	const [selectedSquare, selectSquare] = useState(null);
 	const setSquare = value => {
 		const newGrid = [...grid];
