@@ -1,11 +1,19 @@
 .square {
 	align-items: center;
+	background-color: white;
 	border: 2px solid black;
+	cursor: pointer;
 	display: flex;
 	font-size: 9vw;
 	height: 10vw;
 	justify-content: center;
+	transform-origin: center;
+	transition: transform 0.5s linear;
 	width: 10vw;
+}
+
+.square:hover {
+	transform: scale(1.2);
 }
 
 .square:nth-of-type(3n + 0) {
