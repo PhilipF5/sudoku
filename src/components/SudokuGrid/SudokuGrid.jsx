@@ -13,7 +13,7 @@ const SudokuGrid = ({ grid, selectSquare, selectedSquare }) => {
 					value={value}
 					selectSquare={selectSquare}
 					selected={selectedSquare === index}
-					position={position}
+					position={position(index)}
 				/>
 			))}
 		</div>
