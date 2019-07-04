@@ -8,10 +8,8 @@ const SudokuGrid = ({ grid, selectSquare, selectedSquare }) => {
 		<div className={styles.grid}>
 			{grid.map((value, index) => (
 				<SudokuSquare
+					{...{ index, value, selectSquare }}
 					key={index}
-					index={index}
-					value={value}
-					selectSquare={selectSquare}
 					selected={selectedSquare === index}
 					position={position(index)}
 				/>

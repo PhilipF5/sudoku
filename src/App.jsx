@@ -28,8 +28,8 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<SudokuGrid grid={grid} selectSquare={selectSquare} selectedSquare={selectedSquare} />
-			<NumberPicker setSquare={setSquare} />
+			<SudokuGrid {...{ grid, selectSquare, selectedSquare }} />
+			<NumberPicker {...{ setSquare }} />
 		</div>
 	);
 };

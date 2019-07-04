@@ -5,7 +5,7 @@ import styles from "./NumberPicker.module.css";
 const NumberPicker = ({ setSquare }) => (
 	<div className={styles.picker}>
 		{[1, 2, 3, 4, 5, 6, 7, 8, 9].map(number => (
-			<NumberButton key={number} number={number} onSetSquare={setSquare} />
+			<NumberButton {...{ number }} key={number} onSetSquare={setSquare} />
 		))}
 	</div>
 );
