@@ -14,6 +14,7 @@
 
 .square:hover {
 	transform: scale(1.2);
+	z-index: 100;
 }
 
 .square:nth-of-type(3n + 0) {
