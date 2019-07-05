@@ -13,32 +13,35 @@ const difficulty = {
 const App = () => {
 	const [grid, setGrid] = useState(Array.apply(null, Array(81)));
 	const [solution, setSolution] = useState(Array.apply(null, Array(81)));
+	const [solved, setSolved] = useState(false);
 	const [selectedSquare, selectSquare] = useState(null);
 	const setSquare = value => {
 		const newGrid = [...grid];
 		newGrid[selectedSquare] = value;
 		setGrid(newGrid);
+		setSolved(newGrid.every((value, index) => value === solution[index]));
 	};
 
 	useEffect(() => {
-		const { completed, start } = newPuzzle();
+		const { solution, start } = newPuzzle();
 		setGrid(start);
-		setSolution(completed);
+		setSolution(solution);
 	}, []);
 
 	return (
 		<div className={styles.app}>
 			<SudokuGrid {...{ grid, selectSquare, selectedSquare }} />
 			<NumberPicker {...{ setSquare }} />
+			{solved && <div>Solved</div>}
 		</div>
 	);
 };
 
 const newPuzzle = (level = "easy") => {
-	const completed = SudokuSolver.generate();
+	const solution = SudokuSolver.generate();
 	return {
-		completed,
-		start: SudokuSolver.carve(completed, difficulty[level])
+		solution: solution.flat(),
+		start: SudokuSolver.carve(solution, difficulty[level])
 			.flat()
 			.map(value => value || null),
 	};
