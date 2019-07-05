@@ -18,15 +18,15 @@
 	z-index: 100;
 }
 
-.square:nth-of-type(3n + 0) {
-	margin-right: 10px;
-}
-
 .square.selected {
 	border-color: blue;
 	border-width: 4px;
 	transform: scale(1.2);
 	z-index: 101;
+}
+
+.thirdColumn {
+	margin-right: 10px;
 }
 
 .thirdRow {
