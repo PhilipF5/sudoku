@@ -1,6 +1,7 @@
 import { SudokuSolver } from "@jlguenego/sudoku-generator";
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.css";
+import Header from "./components/Header/Header";
 import NumberPicker from "./components/NumberPicker/NumberPicker";
 import SudokuGrid from "./components/SudokuGrid/SudokuGrid";
 
@@ -30,6 +31,7 @@ const App = () => {
 
 	return (
 		<div className={styles.app}>
+			<Header />
 			<SudokuGrid {...{ grid, selectSquare, selectedSquare }} />
 			<NumberPicker {...{ setSquare }} />
 			{solved && <div>Solved</div>}
