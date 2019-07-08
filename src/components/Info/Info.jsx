@@ -5,8 +5,11 @@ import styles from "./Info.module.css";
 const Info = () => (
 	<div className={styles.container}>
 		<div className={styles.author}>
-			👨‍💻 by&nbsp;
-			<a href="https://www.philipfulgham.com" target="_blank">
+			<span role="img" aria-label="Development">
+				👨‍💻
+			</span>
+			&nbsp;by&nbsp;
+			<a href="https://www.philipfulgham.com" target="_blank" rel="noopener noreferrer">
 				Philip Fulgham
 			</a>
 		</div>
