@@ -1,11 +1,18 @@
 .number {
 	align-items: center;
 	border: 1px solid black;
-	border-radius: 36px;
+	border-radius: 15px;
 	cursor: pointer;
 	display: flex;
 	font-size: 32px;
 	height: 36px;
 	justify-content: center;
-	width: 36px;
+	transition: background-color 0.5s linear, border-color 0.5s linear, color 0.5s linear;
+	width: 72px;
+}
+
+.number:hover {
+	background-color: dodgerblue;
+	border-color: dodgerblue;
+	color: white;
 }
