@@ -12,7 +12,7 @@
 }
 
 .number:hover {
-	background-color: dodgerblue;
-	border-color: dodgerblue;
+	background-color: var(--theme-color);
+	border-color: var(--theme-color);
 	color: white;
 }

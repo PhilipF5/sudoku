@@ -3,7 +3,7 @@
 }
 
 .author a {
-	color: dodgerblue;
+	color: var(--theme-color);
 	font-weight: bold;
 	text-decoration: none;
 	transition: color 0.5s linear;

@@ -19,7 +19,7 @@
 }
 
 .square.selected {
-	border-color: dodgerblue;
+	border-color: var(--theme-color);
 	border-width: 4px;
 	transform: scale(1.2);
 	z-index: 101;
