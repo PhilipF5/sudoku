@@ -15,7 +15,11 @@ code {
 }
 
 #root {
+	align-items: center;
+	box-sizing: border-box;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	padding: 20px;
 	width: 100%;
 }
