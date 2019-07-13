@@ -2,7 +2,7 @@ import React from "react";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
-const SudokuGrid = ({ grid, selectSquare, selectedSquare }) => (
+const SudokuGrid = ({ grid, initialValues, selectSquare, selectedSquare }) => (
 	<div className={styles.grid}>
 		{grid.map((value, index) => (
 			<SudokuSquare
@@ -10,6 +10,7 @@ const SudokuGrid = ({ grid, selectSquare, selectedSquare }) => (
 				key={index}
 				selected={selectedSquare === index}
 				position={position(index)}
+				initialValue={initialValues[index]}
 			/>
 		))}
 	</div>

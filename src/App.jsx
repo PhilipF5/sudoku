@@ -15,6 +15,7 @@ const App = () => {
 	const [solution, setSolution] = useState(Array.apply(null, Array(81)));
 	const [solved, setSolved] = useState(false);
 	const [selectedSquare, selectSquare] = useState(null);
+	const [initialValues, setInitialValues] = useState(Array.apply(null, Array(81)));
 	const setSquare = value => {
 		const newGrid = [...grid];
 		newGrid[selectedSquare] = value;
@@ -25,13 +26,14 @@ const App = () => {
 	useEffect(() => {
 		const { solution, start } = newPuzzle();
 		setGrid(start);
+		setInitialValues(start);
 		setSolution(solution);
 	}, []);
 
 	return (
 		<>
 			<Header />
-			<SudokuGrid {...{ grid, selectSquare, selectedSquare }} />
+			<SudokuGrid {...{ grid, initialValues, selectSquare, selectedSquare }} />
 			<NumberPicker {...{ setSquare }} />
 			{solved && <div>Solved</div>}
 		</>

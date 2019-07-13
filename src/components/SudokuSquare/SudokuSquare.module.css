@@ -3,6 +3,7 @@
 	background-color: white;
 	border: 2px solid black;
 	box-sizing: border-box;
+	color: var(--theme-color);
 	cursor: pointer;
 	display: flex;
 	font-size: 9vw;
@@ -31,4 +32,9 @@
 
 .thirdRow {
 	margin-bottom: 10px;
+}
+
+.prefilled {
+	color: black;
+	pointer-events: none;
 }
