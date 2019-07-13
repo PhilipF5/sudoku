@@ -1,26 +1,25 @@
 {
 	"name": "sudoku",
 	"version": "0.0.0",
+	"author": "Philip Fulgham (https://www.philipfulgham.com)",
+	"repository": "github:PhilipF5/sudoku",
 	"private": true,
-	"dependencies": {
-		"@jlguenego/sudoku-generator": "^1.0.7",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-scripts": "3.0.1"
-	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "pretty-quick --staged"
 		}
+	},
+	"dependencies": {
+		"@jlguenego/sudoku-generator": "^1.0.7",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"react-scripts": "3.0.1"
 	},
 	"devDependencies": {
 		"husky": "^2.7.0",
