@@ -1,7 +1,10 @@
 .grid {
-	display: flex;
+	display: grid;
 	flex-wrap: wrap;
-	height: 100%;
+	grid-template-columns: repeat(9, 1fr);
+	grid-template-rows: repeat(9, 1fr);
+	height: 72vh;
 	justify-content: center;
-	width: 75vh;
+	place-items: center;
+	width: 72vh;
 }
