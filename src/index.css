@@ -22,5 +22,6 @@ code {
 	height: 100vh;
 	justify-content: center;
 	padding: 20px;
+	perspective: 1000px;
 	width: 100vw;
 }
