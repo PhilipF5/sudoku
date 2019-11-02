@@ -6,12 +6,12 @@
 	color: var(--theme-color);
 	cursor: pointer;
 	display: flex;
-	font-size: 9vw;
-	height: 10vw;
+	font-size: 8vh;
+	height: 8vh;
 	justify-content: center;
 	transform-origin: center;
 	transition: transform 0.5s linear;
-	width: 10vw;
+	width: 8vh;
 }
 
 .square:hover {
