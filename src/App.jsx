@@ -16,9 +16,10 @@ const App = () => {
 	const [solved, setSolved] = useState(false);
 	const [selectedSquare, selectSquare] = useState(null);
 	const [initialValues, setInitialValues] = useState(Array.apply(null, Array(81)));
-	const setSquare = value => {
+	const setSquare = (value) => {
 		const newGrid = [...grid];
 		newGrid[selectedSquare] = value;
+		selectSquare(null);
 		setGrid(newGrid);
 		setSolved(newGrid.every((value, index) => value === solution[index]));
 	};
@@ -46,7 +47,7 @@ const newPuzzle = (level = "easy") => {
 		solution: solution.flat(),
 		start: SudokuSolver.carve(solution, difficulty[level])
 			.flat()
-			.map(value => value || null),
+			.map((value) => value || null),
 	};
 };
 
