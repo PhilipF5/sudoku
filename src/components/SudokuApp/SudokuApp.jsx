@@ -1,8 +1,8 @@
 import { SudokuSolver } from "@jlguenego/sudoku-generator";
 import React, { useEffect, useState } from "react";
-import Header from "./components/Header/Header";
-import NumberPicker from "./components/NumberPicker/NumberPicker";
-import SudokuGrid from "./components/SudokuGrid/SudokuGrid";
+import Header from "../Header/Header";
+import NumberPicker from "../NumberPicker/NumberPicker";
+import SudokuGrid from "../SudokuGrid/SudokuGrid";
 
 const difficulty = {
 	easy: 47,
