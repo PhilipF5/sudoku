@@ -1,7 +1,8 @@
 .number {
 	align-items: center;
-	border: 1px solid black;
+	border: 1px solid var(--theme-color);
 	border-radius: 72px;
+	color: var(--theme-color);
 	cursor: pointer;
 	display: flex;
 	font-size: 32px;
@@ -13,6 +14,5 @@
 
 .number:hover {
 	background-color: var(--theme-color);
-	border-color: var(--theme-color);
-	color: white;
+	color: black;
 }

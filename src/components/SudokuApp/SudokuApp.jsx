@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSudokuGrid } from "../../hooks/useSudokuGrid";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
@@ -8,6 +8,7 @@ import styles from "./SudokuApp.module.css";
 const App = () => {
 	const { gridValues, setGridValues, solved } = useSudokuGrid();
 	const [selectedSquare, setSelectedSquare] = useState(null);
+	const [themeColor, setThemeColor] = useState("green");
 
 	const setSquare = useCallback(
 		(value) => {
@@ -19,8 +20,16 @@ const App = () => {
 		[gridValues, selectedSquare, setGridValues, setSelectedSquare],
 	);
 
+	const themeStyles = useMemo(
+		() => ({
+			"--glow-color": `var(--${themeColor}-glow)`,
+			"--theme-color": `var(--${themeColor}-theme)`,
+		}),
+		[themeColor],
+	);
+
 	return (
-		<>
+		<div className={styles.app} style={themeStyles}>
 			<Header />
 			<div className={styles.layout}>
 				<SudokuGrid
@@ -31,7 +40,7 @@ const App = () => {
 				<NumberPicker setSquare={setSquare} />
 			</div>
 			{solved && <div>Solved</div>}
-		</>
+		</div>
 	);
 };
 

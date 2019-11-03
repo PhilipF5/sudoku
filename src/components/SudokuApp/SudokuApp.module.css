@@ -1,3 +1,16 @@
+.app {
+	align-items: center;
+	background: linear-gradient(180deg, #0c0c0c 0%, #2b2b2b 64%, #0c0c0c 100%);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: center;
+	padding: 20px;
+	perspective: 1000px;
+	width: 100vw;
+}
+
 .layout {
 	display: flex;
 	justify-content: space-evenly;

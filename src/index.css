@@ -11,18 +11,24 @@ code {
 }
 
 :root {
-	--theme-color: dodgerblue;
-}
+	--blue-glow: #00ccff80;
+	--blue-theme: #00ccff;
 
-#root {
-	align-items: center;
-	background: linear-gradient(180deg, rgba(85, 37, 117, 1) 0%, rgba(54, 10, 87, 1) 64%, rgba(147, 39, 132, 1) 100%);
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	justify-content: center;
-	padding: 20px;
-	perspective: 1000px;
-	width: 100vw;
+	--green-glow: #00ff0080;
+	--green-theme: #00ff00;
+
+	--pink-glow: #fd49e580;
+	--pink-gradient: linear-gradient(
+		180deg,
+		rgba(85, 37, 117, 1) 0%,
+		rgba(54, 10, 87, 1) 64%,
+		rgba(147, 39, 132, 1) 100%
+	);
+	--pink-theme: #fd82ed;
+
+	--red-glow: #ff000080;
+	--red-theme: #ff0000;
+
+	--yellow-glow: #ffff0080;
+	--yellow-theme: #ffff00;
 }
