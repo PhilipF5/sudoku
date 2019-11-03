@@ -1,11 +1,11 @@
 .number {
 	align-items: center;
 	border: 1px solid black;
-	border-radius: 15px;
+	border-radius: 72px;
 	cursor: pointer;
 	display: flex;
 	font-size: 32px;
-	height: 36px;
+	height: 72px;
 	justify-content: center;
 	transition: background-color 0.5s linear, border-color 0.5s linear, color 0.5s linear;
 	width: 72px;

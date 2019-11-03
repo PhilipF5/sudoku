@@ -1,6 +1,8 @@
 .picker {
-	display: flex;
-	justify-content: space-around;
-	padding: 20px;
-	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	height: 250px;
+	place-self: center;
+	width: 250px;
 }

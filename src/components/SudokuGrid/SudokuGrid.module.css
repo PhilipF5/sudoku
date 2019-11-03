@@ -3,8 +3,8 @@
 	flex-wrap: wrap;
 	grid-template-columns: repeat(9, 1fr);
 	grid-template-rows: repeat(9, 1fr);
-	height: 72vh;
+	height: 75vh;
 	justify-content: center;
 	place-items: center;
-	width: 72vh;
+	width: 75vh;
 }

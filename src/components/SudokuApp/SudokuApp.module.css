@@ -1,6 +1,5 @@
-.app {
-	align-items: center;
+.layout {
 	display: flex;
-	flex-direction: column;
-	padding: 20px;
+	justify-content: space-evenly;
+	width: 100%;
 }
