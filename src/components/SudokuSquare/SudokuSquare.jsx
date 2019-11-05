@@ -13,7 +13,7 @@ const SudokuSquare = ({ index, value, onSelect, selected, position }) => {
 	].filter((c) => !!c);
 	const handleClick = () => {
 		console.log(`Square #${index} clicked! Column ${column}, Row ${row}, Grid ${grid}`);
-		onSelect(index);
+		onSelect(selected ? null : index);
 	};
 	return (
 		<div className={classNames.join(" ")} onClick={handleClick}>
