@@ -3,18 +3,14 @@ import { Linear, TimelineMax, TweenMax } from "gsap";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import styles from "./SudokuSquare.module.css";
 
-const SudokuSquare = ({ index, value, onSelect, selected, position }) => {
+const SudokuSquare = ({ index, value, onSelect, selected, position: { column, row } }) => {
 	const { current: initialValue } = useRef(value);
 	const timeline = useRef(new TimelineMax());
 	const element = useRef(undefined);
-	const { column, grid, row } = position;
-	const inThirdColumn = useMemo(() => (column + 1) % 3 === 0 && column !== 8, [column]);
-	const inThirdRow = useMemo(() => (row + 1) % 3 === 0 && row !== 8, [row]);
+	const inThirdColumn = useMemo(() => isThirdOrSixthInGroup(column), [column]);
+	const inThirdRow = useMemo(() => isThirdOrSixthInGroup(row), [row]);
 	const elementRef = useCallback((node) => node && (element.current = node), []);
-	const handleClick = () => {
-		console.log(`Square #${index} clicked! Column ${column}, Row ${row}, Grid ${grid}`);
-		onSelect(selected ? null : index);
-	};
+	const handleClick = () => onSelect(selected ? null : index);
 
 	useEffect(() => {
 		if (selected) {
@@ -47,5 +43,7 @@ const SudokuSquare = ({ index, value, onSelect, selected, position }) => {
 		</div>
 	);
 };
+
+const isThirdOrSixthInGroup = (index) => (index + 1) % 3 === 0 && index < 8;
 
 export default SudokuSquare;

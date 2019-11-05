@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
-const SudokuGrid = ({ gridValues, initialValues, onSelectSquare, selectedSquare }) => {
+const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare }) => {
 	const [gridPos, setGridPos] = useState({ bottom: 0, left: 0, right: 0, top: 0 });
 	const gridRef = useCallback((node) => {
 		const { bottom, left, right, top } = node.getBoundingClientRect();
