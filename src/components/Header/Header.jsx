@@ -4,7 +4,7 @@ import styles from "./Header.module.css";
 
 const Header = () => (
 	<div className={styles.header}>
-		<div className={styles.title}>Sudoku App</div>
+		<div className={styles.title}>SUDOKU</div>
 		<Info />
 	</div>
 );

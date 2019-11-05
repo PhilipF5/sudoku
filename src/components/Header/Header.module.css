@@ -1,10 +1,13 @@
 .header {
+	color: white;
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	width: 100%;
 }
 
 .title {
-	font-size: 36px;
+	font-family: "Erica One";
+	font-size: 48px;
+	line-height: 48px;
 }
