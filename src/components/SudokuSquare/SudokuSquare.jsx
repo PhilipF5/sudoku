@@ -30,7 +30,7 @@ const SudokuSquare = ({ index, value, onSelect, selected, position: { column, ro
 
 	return (
 		<div
-			className={classNames(styles.square, {
+			className={classNames("square", styles.square, {
 				[styles.thirdColumn]: inThirdColumn,
 				[styles.thirdRow]: inThirdRow,
 				[styles.selected]: selected,
