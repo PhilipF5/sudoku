@@ -32,3 +32,15 @@ code {
 	--yellow-glow: #ffff0080;
 	--yellow-theme: #ffff00;
 }
+
+button {
+	background-color: transparent;
+	border: none;
+	color: inherit;
+	font-size: inherit;
+	padding: none;
+}
+
+button:focus {
+	outline: none;
+}

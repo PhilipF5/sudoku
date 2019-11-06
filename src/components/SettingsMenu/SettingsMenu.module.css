@@ -1,0 +1,19 @@
+.settings {
+	color: var(--theme-color);
+	position: relative;
+}
+
+.gearButton {
+	display: block;
+	font-size: 48px;
+}
+
+.menu {
+	background-color: #0007;
+	border: 1px solid var(--theme-color);
+	bottom: 48px;
+	font-size: 20px;
+	padding: 10px;
+	position: absolute;
+	right: 48px;
+}

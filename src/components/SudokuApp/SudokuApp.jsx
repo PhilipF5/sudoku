@@ -3,11 +3,13 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSudokuGrid } from "../../hooks/useSudokuGrid";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
+import SettingsMenu from "../SettingsMenu/SettingsMenu";
 import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import styles from "./SudokuApp.module.css";
 
 const App = () => {
-	const { gridValues, setGridValues, solved } = useSudokuGrid();
+	const [difficulty, setDifficulty] = useState("easy");
+	const { gridValues, setGridValues, solved } = useSudokuGrid(difficulty);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [themeColor, setThemeColor] = useState("green");
 
@@ -54,7 +56,14 @@ const App = () => {
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>
-			{solved && <div>Solved</div>}
+			<div className={styles.footer}>
+				<SettingsMenu
+					difficulty={difficulty}
+					setDifficulty={setDifficulty}
+					theme={themeColor}
+					setTheme={setThemeColor}
+				/>
+			</div>
 		</div>
 	);
 };

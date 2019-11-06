@@ -1,0 +1,25 @@
+.menuItem {
+	align-items: baseline;
+	display: flex;
+	justify-content: space-between;
+}
+
+.name {
+	font-weight: bold;
+	margin-right: 20px;
+}
+
+.option {
+	cursor: pointer;
+	transition: color 0.5s linear;
+}
+
+.option:hover {
+	color: white;
+}
+
+.active {
+	color: white;
+	pointer-events: none;
+	text-shadow: 0 0 0.2em #ffffff80;
+}
