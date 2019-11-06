@@ -2,13 +2,13 @@
 	text-align: right;
 }
 
-.author a {
+.container a {
 	color: var(--theme-color);
 	font-weight: bold;
 	text-decoration: none;
 	transition: color 0.5s linear;
 }
 
-.author a:hover {
+.container a:hover {
 	color: white;
 }

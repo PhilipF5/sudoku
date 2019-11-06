@@ -4,6 +4,12 @@ import styles from "./Info.module.css";
 
 const Info = () => (
 	<div className={styles.container}>
+		<div className={styles.source}>
+			Source code on&nbsp;
+			<a href="https://github.com/PhilipF5/sudoku" target="_blank" rel="noopener noreferrer">
+				GitHub
+			</a>
+		</div>
 		<div className={styles.author}>
 			<span role="img" aria-label="Development">
 				👨‍💻
