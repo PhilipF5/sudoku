@@ -1,4 +1,4 @@
-import { TweenLite } from "gsap";
+import { Power1, TweenLite } from "gsap";
 import React, { useCallback, useState } from "react";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
@@ -13,7 +13,8 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare }) => {
 		if (!selectedSquare) {
 			const rotationY = normalize(e.clientX, gridPos.right, gridPos.left, 50);
 			const rotationX = normalize(e.clientY, gridPos.top, gridPos.bottom, 50);
-			TweenLite.set(`.${styles.grid}`, { rotationX, rotationY });
+			TweenLite.killTweensOf(`.${styles.grid}`);
+			TweenLite.to(`.${styles.grid}`, 0.5, { rotationX, rotationY, ease: Power1.easeOut });
 		}
 	};
 	return (
