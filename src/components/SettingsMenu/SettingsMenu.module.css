@@ -23,3 +23,10 @@
 	position: absolute;
 	right: 48px;
 }
+
+.buttons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 10px;
+}

@@ -1,10 +1,11 @@
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useEffect, useState } from "react";
+import SettingsButton from "../SettingsButton/SettingsButton";
 import SettingsMenuItem from "../SettingsMenuItem/SettingsMenuItem";
 import styles from "./SettingsMenu.module.css";
 
-const SettingsMenu = ({ difficulty, theme, setDifficulty, setTheme }) => {
+const SettingsMenu = ({ difficulty, theme, setDifficulty, setTheme, onReset, onNewGame }) => {
 	const [open, setOpen] = useState(false);
 	const toggleOpen = useCallback(() => setOpen((isOpen) => !isOpen), [setOpen]);
 	const handleGearClick = useCallback(
@@ -42,6 +43,10 @@ const SettingsMenu = ({ difficulty, theme, setDifficulty, setTheme }) => {
 						onChange={setDifficulty}
 						value={difficulty}
 					/>
+					<div className={styles.buttons}>
+						<SettingsButton onClick={onNewGame}>New Game</SettingsButton>
+						<SettingsButton onClick={onReset}>Reset</SettingsButton>
+					</div>
 				</div>
 			)}
 		</div>

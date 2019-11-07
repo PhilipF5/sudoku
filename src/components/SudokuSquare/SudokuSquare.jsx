@@ -1,15 +1,16 @@
 import classNames from "classnames";
 import { Linear, TimelineMax, TweenMax } from "gsap";
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./SudokuSquare.module.css";
 
-const SudokuSquare = ({ index, value, onSelect, selected, position: { column, row } }) => {
-	const { current: initialValue } = useRef(value);
+const SudokuSquare = ({ index, value, onSelect, selected, puzzleId, position: { column, row } }) => {
+	const [initialValue, setInitialValue] = useState(value);
 	const timeline = useRef(new TimelineMax());
 	const element = useRef(undefined);
 	const inThirdColumn = useMemo(() => isThirdOrSixthInGroup(column), [column]);
 	const inThirdRow = useMemo(() => isThirdOrSixthInGroup(row), [row]);
 	const elementRef = useCallback((node) => node && (element.current = node), []);
+	const [lastPuzzleId, setLastPuzzleId] = useState(puzzleId);
 	const handleClick = () => onSelect(selected ? null : index);
 
 	useEffect(() => {
@@ -27,6 +28,13 @@ const SudokuSquare = ({ index, value, onSelect, selected, position: { column, ro
 			TweenMax.to(element.current, 0.75, { rotationX: 0, rotationY: 0, scale: 1, ease: Linear.easeInOut });
 		}
 	}, [selected, element, timeline]);
+
+	useEffect(() => {
+		if (puzzleId > lastPuzzleId) {
+			setInitialValue(value);
+			setLastPuzzleId(puzzleId);
+		}
+	}, [lastPuzzleId, puzzleId, value]);
 
 	return (
 		<div

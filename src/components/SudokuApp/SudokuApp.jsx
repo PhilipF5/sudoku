@@ -9,7 +9,7 @@ import styles from "./SudokuApp.module.css";
 
 const App = () => {
 	const [difficulty, setDifficulty] = useState("easy");
-	const { gridValues, setGridValues, solved } = useSudokuGrid(difficulty);
+	const { gridValues, setGridValues, solved, createNewPuzzle, reset, puzzleId } = useSudokuGrid(difficulty);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [themeColor, setThemeColor] = useState("green");
 
@@ -53,6 +53,7 @@ const App = () => {
 					gridValues={gridValues}
 					selectedSquare={selectedSquare}
 					onSelectSquare={setSelectedSquare}
+					puzzleId={puzzleId}
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>
@@ -62,6 +63,8 @@ const App = () => {
 					setDifficulty={setDifficulty}
 					theme={themeColor}
 					setTheme={setThemeColor}
+					onReset={reset}
+					onNewGame={() => createNewPuzzle(difficulty)}
 				/>
 			</div>
 		</div>

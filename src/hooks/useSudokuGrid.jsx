@@ -5,16 +5,18 @@ export const useSudokuGrid = (initialDifficulty = "easy") => {
 	const [{ solution, start }, setPuzzle] = useState(generatePuzzle(initialDifficulty));
 	const [gridValues, setGridValues] = useState(start);
 	const [solved, setSolved] = useState(false);
+	const [puzzleId, setPuzzleId] = useState(0);
 	const createNewPuzzle = (difficulty = "easy") => setPuzzle(generatePuzzle(difficulty));
 	const reset = () => setGridValues(start);
 
 	useEffect(() => {
 		setGridValues(start);
-	}, [start, setGridValues]);
+		setPuzzleId((id) => id + 1);
+	}, [start]);
 
 	useEffect(() => {
 		setSolved(gridValues.every((value, index) => value === solution[index]));
-	}, [gridValues, solution, setSolved]);
+	}, [gridValues, solution]);
 
 	return {
 		gridValues,
@@ -22,6 +24,7 @@ export const useSudokuGrid = (initialDifficulty = "easy") => {
 		solved,
 		createNewPuzzle,
 		reset,
+		puzzleId,
 	};
 };
 
