@@ -42,3 +42,13 @@
 	color: var(--glow-color);
 	pointer-events: none;
 }
+
+.square.duplicate {
+	color: var(--red-glow);
+	text-shadow: 0 0 0.2em #f00d;
+}
+
+.square.duplicate:not(.prefilled) {
+	background-color: #f003;
+	color: red;
+}

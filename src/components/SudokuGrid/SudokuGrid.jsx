@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
-const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId }) => {
+const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assistLevel }) => {
 	const [gridPos, setGridPos] = useState({ bottom: 0, left: 0, right: 0, top: 0 });
 	const gridRef = useCallback((node) => {
 		const { bottom, left, right, top } = node.getBoundingClientRect();
@@ -19,7 +19,7 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId }) =>
 	};
 	return (
 		<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
-			{gridValues.map((value, index) => (
+			{gridValues.map((value, index, array) => (
 				<SudokuSquare
 					index={index}
 					value={value}
@@ -28,6 +28,7 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId }) =>
 					selected={selectedSquare === index}
 					position={position(index)}
 					puzzleId={puzzleId}
+					isDupe={assistLevel > 0 && valueIsDuplicate(value, position(index), array)}
 				/>
 			))}
 		</div>
@@ -38,6 +39,16 @@ const columnOfSquare = (index) => index % 9;
 const rowOfSquare = (index) => Math.trunc(index / 9);
 const gridOfSquare = (index) => Math.trunc(columnOfSquare(index) / 3) + Math.trunc(rowOfSquare(index) / 3) * 3;
 const position = (index) => ({ column: columnOfSquare(index), grid: gridOfSquare(index), row: rowOfSquare(index) });
+const valuesInColumn = (gridValues, column) => gridValues.filter((_, i) => columnOfSquare(i) === column);
+const valuesInRow = (gridValues, row) => gridValues.filter((_, i) => rowOfSquare(i) === row);
+const valuesInGrid = (gridValues, grid) => gridValues.filter((_, i) => gridOfSquare(i) === grid);
+const valueIsDuplicate = (value, position, gridValues) =>
+	value &&
+	[
+		...valuesInColumn(gridValues, position.column),
+		...valuesInRow(gridValues, position.row),
+		...valuesInGrid(gridValues, position.grid),
+	].filter((v) => v === value).length > 3;
 
 const normalize = (value, lower, upper, scale) => {
 	const range = upper - lower;

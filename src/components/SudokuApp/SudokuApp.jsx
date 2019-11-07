@@ -12,6 +12,7 @@ const App = () => {
 	const { gridValues, setGridValues, solved, createNewPuzzle, reset, puzzleId } = useSudokuGrid(difficulty);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [themeColor, setThemeColor] = useState("green");
+	const [assistLevel, setAssistLevel] = useState(0);
 
 	const setSquare = useCallback(
 		(value) => {
@@ -54,6 +55,7 @@ const App = () => {
 					selectedSquare={selectedSquare}
 					onSelectSquare={setSelectedSquare}
 					puzzleId={puzzleId}
+					assistLevel={assistLevel}
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>
@@ -65,6 +67,8 @@ const App = () => {
 					setTheme={setThemeColor}
 					onReset={reset}
 					onNewGame={() => createNewPuzzle(difficulty)}
+					assistLevel={assistLevel}
+					setAssistLevel={setAssistLevel}
 				/>
 			</div>
 		</div>

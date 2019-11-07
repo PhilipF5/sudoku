@@ -3,7 +3,7 @@ import { Linear, TimelineMax, TweenMax } from "gsap";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./SudokuSquare.module.css";
 
-const SudokuSquare = ({ index, value, onSelect, selected, puzzleId, position: { column, row } }) => {
+const SudokuSquare = ({ index, value, onSelect, selected, puzzleId, isDupe, position: { column, row } }) => {
 	const [initialValue, setInitialValue] = useState(value);
 	const timeline = useRef(new TimelineMax());
 	const element = useRef(undefined);
@@ -43,6 +43,7 @@ const SudokuSquare = ({ index, value, onSelect, selected, puzzleId, position: { 
 				[styles.thirdRow]: inThirdRow,
 				[styles.selected]: selected,
 				[styles.prefilled]: initialValue,
+				[styles.duplicate]: isDupe,
 			})}
 			onClick={handleClick}
 			ref={elementRef}

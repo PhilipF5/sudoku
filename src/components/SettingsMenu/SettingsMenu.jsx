@@ -5,7 +5,16 @@ import SettingsButton from "../SettingsButton/SettingsButton";
 import SettingsMenuItem from "../SettingsMenuItem/SettingsMenuItem";
 import styles from "./SettingsMenu.module.css";
 
-const SettingsMenu = ({ difficulty, theme, setDifficulty, setTheme, onReset, onNewGame }) => {
+const SettingsMenu = ({
+	difficulty,
+	theme,
+	setDifficulty,
+	setTheme,
+	onReset,
+	onNewGame,
+	assistLevel,
+	setAssistLevel,
+}) => {
 	const [open, setOpen] = useState(false);
 	const toggleOpen = useCallback(() => setOpen((isOpen) => !isOpen), [setOpen]);
 	const handleGearClick = useCallback(
@@ -42,6 +51,12 @@ const SettingsMenu = ({ difficulty, theme, setDifficulty, setTheme, onReset, onN
 						options={["easy", "medium", "hard"]}
 						onChange={setDifficulty}
 						value={difficulty}
+					/>
+					<SettingsMenuItem
+						name="Assist"
+						options={[0, 1, 2, 3]}
+						onChange={setAssistLevel}
+						value={assistLevel}
 					/>
 					<div className={styles.buttons}>
 						<SettingsButton onClick={onNewGame}>New Game</SettingsButton>
