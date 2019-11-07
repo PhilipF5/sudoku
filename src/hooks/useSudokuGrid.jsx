@@ -1,5 +1,6 @@
 import { SudokuSolver } from "@jlguenego/sudoku-generator";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { valuesInColumn, valuesInGrid, valuesInRow } from "../utilities/gridHelpers";
 
 export const useSudokuGrid = (initialDifficulty = "easy") => {
 	const [{ solution, start }, setPuzzle] = useState(generatePuzzle(initialDifficulty));
@@ -8,6 +9,15 @@ export const useSudokuGrid = (initialDifficulty = "easy") => {
 	const [puzzleId, setPuzzleId] = useState(0);
 	const createNewPuzzle = (difficulty = "easy") => setPuzzle(generatePuzzle(difficulty));
 	const reset = () => setGridValues(start);
+
+	const solutionPieces = useMemo(() => {
+		const slices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+		return {
+			columns: slices.map((s) => valuesInColumn(solution, s).join("")),
+			grids: slices.map((s) => valuesInGrid(solution, s).join("")),
+			rows: slices.map((s) => valuesInRow(solution, s).join("")),
+		};
+	}, [solution]);
 
 	useEffect(() => {
 		setGridValues(start);
@@ -25,6 +35,7 @@ export const useSudokuGrid = (initialDifficulty = "easy") => {
 		createNewPuzzle,
 		reset,
 		puzzleId,
+		solution: solutionPieces,
 	};
 };
 
