@@ -4,8 +4,14 @@
 }
 
 .gearButton {
+	cursor: pointer;
 	display: block;
 	font-size: 48px;
+	transition: color 0.5s linear;
+}
+
+.gearButton:hover {
+	color: white;
 }
 
 .menu {
