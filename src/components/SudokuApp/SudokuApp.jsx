@@ -1,6 +1,7 @@
-import { Linear, TweenMax } from "gsap";
+import { Linear, Power3, TweenMax } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSudokuGrid } from "../../hooks/useSudokuGrid";
+import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities/gridHelpers";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
 import SettingsMenu from "../SettingsMenu/SettingsMenu";
@@ -9,7 +10,7 @@ import styles from "./SudokuApp.module.css";
 
 const App = () => {
 	const [difficulty, setDifficulty] = useState("easy");
-	const { gridValues, setGridValues, solved, createNewPuzzle, reset, puzzleId } = useSudokuGrid(difficulty);
+	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = useSudokuGrid(difficulty);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [themeColor, setThemeColor] = useState("green");
 	const [assistLevel, setAssistLevel] = useState(0);
@@ -18,6 +19,20 @@ const App = () => {
 		(value) => {
 			const newGrid = [...gridValues];
 			newGrid[selectedSquare] = value;
+
+			if (assistLevel > 0) {
+				const { column, grid, row } = position(selectedSquare);
+				if (valuesInColumn(newGrid, column).join("") === solution.columns[column]) {
+					animateColumnSolved(column);
+				}
+				if (valuesInGrid(newGrid, grid).join("") === solution.grids[grid]) {
+					animateGridSolved(grid);
+				}
+				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
+					animateRowSolved(row);
+				}
+			}
+
 			setSelectedSquare(null);
 			setGridValues(newGrid);
 		},
@@ -72,6 +87,26 @@ const App = () => {
 				/>
 			</div>
 		</div>
+	);
+};
+
+const animateColumnSolved = (column) => animateSectionSolved("column", column, [1, 9]);
+const animateGridSolved = (grid) => animateSectionSolved("grid", grid, [3, 3]);
+const animateRowSolved = (row) => animateSectionSolved("row", row, [9, 1]);
+
+const animateSectionSolved = (type, index, grid) => {
+	TweenMax.staggerTo(
+		`.square[data-${type}="${index}"`,
+		1,
+		{
+			borderColor: "white",
+			color: "white",
+			"--box-shadow-color": "rgba(255, 255, 255, 0.9)",
+			repeat: 1,
+			yoyo: true,
+			ease: Power3.easeOut,
+		},
+		{ each: 0.1, from: "center", grid },
 	);
 };
 

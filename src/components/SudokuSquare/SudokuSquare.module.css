@@ -1,8 +1,9 @@
 .square {
+	--box-shadow-color: var(--glow-color);
 	align-items: center;
 	background-color: transparent;
 	border: 2px solid var(--theme-color);
-	box-shadow: 0 0 5px 5px var(--glow-color), 0 0 5px 5px var(--glow-color) inset;
+	box-shadow: 0 0 5px 5px var(--box-shadow-color), 0 0 5px 5px var(--box-shadow-color) inset;
 	box-sizing: border-box;
 	color: white;
 	cursor: pointer;
