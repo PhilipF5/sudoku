@@ -1,5 +1,6 @@
 import { Power1, TweenLite } from "gsap";
 import React, { useCallback, useState } from "react";
+import { position, valueIsDuplicate } from "../../utilities/gridHelpers";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
@@ -34,21 +35,6 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assi
 		</div>
 	);
 };
-
-const columnOfSquare = (index) => index % 9;
-const rowOfSquare = (index) => Math.trunc(index / 9);
-const gridOfSquare = (index) => Math.trunc(columnOfSquare(index) / 3) + Math.trunc(rowOfSquare(index) / 3) * 3;
-const position = (index) => ({ column: columnOfSquare(index), grid: gridOfSquare(index), row: rowOfSquare(index) });
-const valuesInColumn = (gridValues, column) => gridValues.filter((_, i) => columnOfSquare(i) === column);
-const valuesInRow = (gridValues, row) => gridValues.filter((_, i) => rowOfSquare(i) === row);
-const valuesInGrid = (gridValues, grid) => gridValues.filter((_, i) => gridOfSquare(i) === grid);
-const valueIsDuplicate = (value, position, gridValues) =>
-	value &&
-	[
-		...valuesInColumn(gridValues, position.column),
-		...valuesInRow(gridValues, position.row),
-		...valuesInGrid(gridValues, position.grid),
-	].filter((v) => v === value).length > 3;
 
 const normalize = (value, lower, upper, scale) => {
 	const range = upper - lower;
