@@ -5,7 +5,7 @@
 	grid-template-rows: repeat(9, 1fr);
 	height: 75vh;
 	justify-content: center;
-	perspective: 200px;
+	perspective: 500px;
 	place-items: center;
 	width: 75vh;
 }
