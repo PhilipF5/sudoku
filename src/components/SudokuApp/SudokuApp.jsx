@@ -20,7 +20,7 @@ const App = () => {
 			const newGrid = [...gridValues];
 			newGrid[selectedSquare] = value;
 
-			if (assistLevel > 0) {
+			if (assistLevel >= 0 && newGrid.join("") !== solution.complete.join("")) {
 				const { column, grid, row } = position(selectedSquare);
 				const timeline = new TimelineMax();
 				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {

@@ -35,7 +35,7 @@ export const useSudokuGrid = (initialDifficulty = "easy") => {
 		createNewPuzzle,
 		reset,
 		puzzleId,
-		solution: solutionPieces,
+		solution: { complete: solution, ...solutionPieces },
 	};
 };
 
