@@ -1,6 +1,7 @@
 import { Power1, TweenLite } from "gsap";
 import React, { useCallback, useState } from "react";
 import { position, valueIsDuplicate } from "../../utilities/gridHelpers";
+import SquareHints from "../SquareHints/SquareHints";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
@@ -20,19 +21,24 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assi
 	};
 	return (
 		<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
-			{gridValues.map((value, index, array) => (
-				<SudokuSquare
-					index={index}
-					value={value}
-					onSelect={onSelectSquare}
-					key={index}
-					selected={selectedSquare === index}
-					position={position(index)}
-					puzzleId={puzzleId}
-					isDupe={assistLevel >= 1 && valueIsDuplicate(value, position(index), array)}
-					isWrong={assistLevel >= 2 && value && gridValues[index] !== solutionValues[index]}
-				/>
-			))}
+			{gridValues.map((value, index, array) => {
+				const pos = position(index);
+				return (
+					<SudokuSquare
+						index={index}
+						value={value}
+						onSelect={onSelectSquare}
+						key={index}
+						selected={selectedSquare === index}
+						position={pos}
+						puzzleId={puzzleId}
+						isDupe={assistLevel >= 1 && valueIsDuplicate(value, pos, array)}
+						isWrong={assistLevel >= 2 && value && gridValues[index] !== solutionValues[index]}
+					>
+						{assistLevel >= 3 && !value && <SquareHints gridValues={array} position={pos} />}
+					</SudokuSquare>
+				);
+			})}
 		</div>
 	);
 };

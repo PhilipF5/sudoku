@@ -16,3 +16,10 @@ export const valueIsDuplicate = (value, position, gridValues) =>
 		...valuesInRow(gridValues, position.row),
 		...valuesInGrid(gridValues, position.grid),
 	].filter((v) => v === value).length > 3;
+export const valueWouldBeDuplicate = (value, position, gridValues) =>
+	value &&
+	[
+		...valuesInColumn(gridValues, position.column),
+		...valuesInRow(gridValues, position.row),
+		...valuesInGrid(gridValues, position.grid),
+	].includes(value);

@@ -1,0 +1,16 @@
+.hints {
+	bottom: 0;
+	display: grid;
+	font-size: 12px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	left: 0;
+	padding: 6px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.number {
+	place-self: center;
+}

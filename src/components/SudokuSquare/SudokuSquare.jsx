@@ -12,6 +12,7 @@ const SudokuSquare = ({
 	isDupe,
 	isWrong,
 	position: { column, row, grid },
+	children,
 }) => {
 	const [initialValue, setInitialValue] = useState(value);
 	const timeline = useRef(new TimelineMax());
@@ -61,6 +62,7 @@ const SudokuSquare = ({
 			data-grid={grid}
 		>
 			{value}
+			{children}
 		</div>
 	);
 };
