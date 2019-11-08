@@ -30,7 +30,7 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assi
 					position={position(index)}
 					puzzleId={puzzleId}
 					isDupe={assistLevel >= 1 && valueIsDuplicate(value, position(index), array)}
-					isWrong={assistLevel >= 2 && gridValues[index] !== solutionValues[index]}
+					isWrong={assistLevel >= 2 && value && gridValues[index] !== solutionValues[index]}
 				/>
 			))}
 		</div>
