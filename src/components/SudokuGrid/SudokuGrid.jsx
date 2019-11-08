@@ -12,7 +12,7 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assi
 		setGridPos({ bottom, left, right, top });
 	}, []);
 	const handleMouseMove = (e) => {
-		if (!selectedSquare) {
+		if (selectedSquare === null) {
 			const rotationY = normalize(e.clientX, gridPos.right, gridPos.left, 50);
 			const rotationX = normalize(e.clientY, gridPos.top, gridPos.bottom, 50);
 			TweenLite.killTweensOf(`.${styles.grid}`);
