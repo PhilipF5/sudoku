@@ -1,4 +1,4 @@
-import { Linear, Power3, TweenMax } from "gsap";
+import { Linear, Power3, TimelineMax, TweenMax } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSudokuGrid } from "../../hooks/useSudokuGrid";
 import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities/gridHelpers";
@@ -22,21 +22,22 @@ const App = () => {
 
 			if (assistLevel > 0) {
 				const { column, grid, row } = position(selectedSquare);
+				const timeline = new TimelineMax();
+				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
+					timeline.add(animateRowSolved(row));
+				}
 				if (valuesInColumn(newGrid, column).join("") === solution.columns[column]) {
-					animateColumnSolved(column);
+					timeline.add(animateColumnSolved(column));
 				}
 				if (valuesInGrid(newGrid, grid).join("") === solution.grids[grid]) {
-					animateGridSolved(grid);
-				}
-				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
-					animateRowSolved(row);
+					timeline.add(animateGridSolved(grid));
 				}
 			}
 
 			setSelectedSquare(null);
 			setGridValues(newGrid);
 		},
-		[gridValues, selectedSquare, setGridValues, setSelectedSquare],
+		[gridValues, selectedSquare, setGridValues, setSelectedSquare, assistLevel, solution],
 	);
 
 	const themeStyles = useMemo(
@@ -95,7 +96,7 @@ const animateGridSolved = (grid) => animateSectionSolved("grid", grid, [3, 3]);
 const animateRowSolved = (row) => animateSectionSolved("row", row, [9, 1]);
 
 const animateSectionSolved = (type, index, grid) => {
-	TweenMax.staggerTo(
+	return TweenMax.staggerTo(
 		`.square[data-${type}="${index}"`,
 		1,
 		{
