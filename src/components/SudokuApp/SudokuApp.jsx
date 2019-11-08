@@ -72,6 +72,7 @@ const App = () => {
 					onSelectSquare={setSelectedSquare}
 					puzzleId={puzzleId}
 					assistLevel={assistLevel}
+					solutionValues={solution.complete}
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>

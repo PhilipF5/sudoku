@@ -4,7 +4,7 @@ import { position, valueIsDuplicate } from "../../utilities/gridHelpers";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
-const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assistLevel }) => {
+const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assistLevel, solutionValues }) => {
 	const [gridPos, setGridPos] = useState({ bottom: 0, left: 0, right: 0, top: 0 });
 	const gridRef = useCallback((node) => {
 		const { bottom, left, right, top } = node.getBoundingClientRect();
@@ -29,7 +29,8 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assi
 					selected={selectedSquare === index}
 					position={position(index)}
 					puzzleId={puzzleId}
-					isDupe={assistLevel > 0 && valueIsDuplicate(value, position(index), array)}
+					isDupe={assistLevel >= 1 && valueIsDuplicate(value, position(index), array)}
+					isWrong={assistLevel >= 2 && gridValues[index] !== solutionValues[index]}
 				/>
 			))}
 		</div>

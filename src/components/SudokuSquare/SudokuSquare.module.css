@@ -44,12 +44,12 @@
 	pointer-events: none;
 }
 
-.square.duplicate {
+.square.bad {
 	color: var(--red-glow);
 	text-shadow: 0 0 0.2em rgba(255, 0, 0, 0.867);
 }
 
-.square.duplicate:not(.prefilled) {
+.square.bad:not(.prefilled) {
 	background-color: rgba(255, 0, 0, 0.2);
 	color: red;
 }
