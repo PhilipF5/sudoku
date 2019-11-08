@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { Linear, TimelineMax, TweenMax } from "gsap";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import "./SudokuSquare.css";
 import styles from "./SudokuSquare.module.css";
 
 const SudokuSquare = ({

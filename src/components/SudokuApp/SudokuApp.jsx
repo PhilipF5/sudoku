@@ -101,9 +101,7 @@ const animateSectionSolved = (type, index, grid) => {
 		`.square[data-${type}="${index}"`,
 		1,
 		{
-			borderColor: "white",
-			color: "white",
-			"--box-shadow-color": "rgba(255, 255, 255, 0.9)",
+			className: "+=solvedFlash",
 			repeat: 1,
 			yoyo: true,
 			ease: Power3.easeOut,
