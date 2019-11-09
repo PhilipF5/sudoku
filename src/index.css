@@ -11,23 +11,23 @@ code {
 }
 
 :root {
-	--blue-glow: rgba(0, 203, 255, 0.502);
-	--blue-theme: rgb(0, 204, 255);
+	--blue-glow: #00cbff80;
+	--blue-theme: #00ccff;
 
-	--green-glow: rgba(0, 255, 0, 0.502);
-	--green-theme: rgb(0, 255, 0);
+	--green-glow: #00ff0080;
+	--green-theme: #00ff00;
 
-	--pink-glow: rgba(253, 73, 229, 0.502);
+	--pink-glow: #fd49e580;
 	--pink-gradient: linear-gradient(
 		180deg,
 		rgba(85, 37, 117, 1) 0%,
 		rgba(54, 10, 87, 1) 64%,
 		rgba(147, 39, 132, 1) 100%
 	);
-	--pink-theme: rgb(253, 130, 237);
+	--pink-theme: #fd82ed;
 
-	--yellow-glow: rgba(255, 255, 0, 0.502);
-	--yellow-theme: rgb(255, 255, 0);
+	--yellow-glow: #ffff0080;
+	--yellow-theme: #ffff00;
 }
 
 button {

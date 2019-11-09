@@ -1,5 +1,5 @@
 .square.solvedFlash {
-	--box-shadow-color: rgba(255, 255, 255, 0.9);
+	--box-shadow-color: #ffffffe6;
 	border-color: "white";
 	color: "white";
 }

@@ -17,15 +17,15 @@
 }
 
 .square:not(.prefilled) {
-	text-shadow: 0 0 0.2em rgba(255, 255, 255, 0.5);
+	text-shadow: 0 0 0.2em #ffffff80;
 }
 
 .square:hover {
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: #ffffff33;
 }
 
 .square.selected {
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: #ffffff33;
 	border-color: white;
 	border-width: 4px;
 	z-index: 101;
@@ -46,10 +46,10 @@
 
 .square.bad {
 	color: var(--red-glow);
-	text-shadow: 0 0 0.2em rgba(255, 0, 0, 0.867);
+	text-shadow: 0 0 0.2em #ff0000dd;
 }
 
 .square.bad:not(.prefilled) {
-	background-color: rgba(255, 0, 0, 0.2);
+	background-color: #ff000033;
 	color: red;
 }
