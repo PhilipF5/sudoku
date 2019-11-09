@@ -1,6 +1,6 @@
 import { Linear, Power3, TimelineMax, TweenMax } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useSudokuGrid } from "../../hooks/useSudokuGrid";
+import { usePuzzle } from "../../hooks";
 import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities/gridHelpers";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
@@ -10,7 +10,7 @@ import styles from "./SudokuApp.module.css";
 
 const App = () => {
 	const [difficulty, setDifficulty] = useState("easy");
-	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = useSudokuGrid(difficulty);
+	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(difficulty);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [themeColor, setThemeColor] = useState("green");
 	const [assistLevel, setAssistLevel] = useState(0);
