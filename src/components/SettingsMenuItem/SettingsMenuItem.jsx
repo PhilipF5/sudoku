@@ -18,7 +18,7 @@ const SettingsMenuItem = ({ name, options, onChange, value }) => {
 					onClick={(e) => handleChange(e, o)}
 					key={o}
 				>
-					{o}
+					{typeof o === "boolean" ? o.toString() : o}
 				</button>
 			)),
 		[handleChange, options, value],

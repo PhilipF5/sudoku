@@ -5,16 +5,7 @@ import SettingsButton from "../SettingsButton/SettingsButton";
 import SettingsMenuItem from "../SettingsMenuItem/SettingsMenuItem";
 import styles from "./SettingsMenu.module.css";
 
-const SettingsMenu = ({
-	difficulty,
-	theme,
-	setDifficulty,
-	setTheme,
-	onReset,
-	onNewGame,
-	assistLevel,
-	setAssistLevel,
-}) => {
+const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 	const [open, setOpen] = useState(false);
 	const toggleOpen = useCallback(() => setOpen((isOpen) => !isOpen), [setOpen]);
 	const handleGearClick = useCallback(
@@ -43,20 +34,38 @@ const SettingsMenu = ({
 					<SettingsMenuItem
 						name="Theme"
 						options={["blue", "green", "pink", "yellow"]}
-						onChange={setTheme}
-						value={theme}
+						onChange={(theme) => setSettings((settings) => ({ ...settings, theme }))}
+						value={settings.theme}
 					/>
 					<SettingsMenuItem
 						name="Difficulty"
 						options={["easy", "medium", "hard"]}
-						onChange={setDifficulty}
-						value={difficulty}
+						onChange={(difficulty) => setSettings((settings) => ({ ...settings, difficulty }))}
+						value={settings.difficulty}
 					/>
 					<SettingsMenuItem
-						name="Assist"
-						options={[0, 1, 2, 3]}
-						onChange={setAssistLevel}
-						value={assistLevel}
+						name="Show Completions"
+						options={[false, true]}
+						onChange={(showCompletions) => setSettings((settings) => ({ ...settings, showCompletions }))}
+						value={settings.showCompletions}
+					/>
+					<SettingsMenuItem
+						name="Show Duplicates"
+						options={[false, true]}
+						onChange={(showDuplicates) => setSettings((settings) => ({ ...settings, showDuplicates }))}
+						value={settings.showDuplicates}
+					/>
+					<SettingsMenuItem
+						name="Show Hints"
+						options={[false, true]}
+						onChange={(showHints) => setSettings((settings) => ({ ...settings, showHints }))}
+						value={settings.showHints}
+					/>
+					<SettingsMenuItem
+						name="Show Incorrect"
+						options={[false, true]}
+						onChange={(showIncorrect) => setSettings((settings) => ({ ...settings, showIncorrect }))}
+						value={settings.showIncorrect}
 					/>
 					<div className={styles.buttons}>
 						<SettingsButton onClick={onNewGame}>New Game</SettingsButton>

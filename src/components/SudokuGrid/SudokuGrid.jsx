@@ -5,7 +5,16 @@ import SquareHints from "../SquareHints/SquareHints";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
 
-const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assistLevel, solutionValues }) => {
+const SudokuGrid = ({
+	gridValues,
+	onSelectSquare,
+	selectedSquare,
+	puzzleId,
+	showDuplicates,
+	showHints,
+	showIncorrect,
+	solutionValues,
+}) => {
 	const [gridPos, setGridPos] = useState({ bottom: 0, left: 0, right: 0, top: 0 });
 	const gridRef = useCallback((node) => {
 		const { bottom, left, right, top } = node.getBoundingClientRect();
@@ -32,10 +41,10 @@ const SudokuGrid = ({ gridValues, onSelectSquare, selectedSquare, puzzleId, assi
 						selected={selectedSquare === index}
 						position={pos}
 						puzzleId={puzzleId}
-						isDupe={assistLevel >= 1 && valueIsDuplicate(value, pos, array)}
-						isWrong={assistLevel >= 2 && value && gridValues[index] !== solutionValues[index]}
+						isDupe={showDuplicates && valueIsDuplicate(value, pos, array)}
+						isWrong={showIncorrect && value && gridValues[index] !== solutionValues[index]}
 					>
-						{assistLevel >= 3 && !value && <SquareHints gridValues={array} position={pos} />}
+						{showHints && !value && <SquareHints gridValues={array} position={pos} />}
 					</SudokuSquare>
 				);
 			})}

@@ -9,18 +9,25 @@ import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import styles from "./SudokuApp.module.css";
 
 const App = () => {
-	const [difficulty, setDifficulty] = useState("easy");
-	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(difficulty);
+	const [settings, setSettings] = useState({
+		theme: "green",
+		difficulty: "easy",
+		showCompletions: true,
+		showDuplicates: false,
+		showHints: false,
+		showIncorrect: false,
+	});
+	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(
+		settings.difficulty,
+	);
 	const [selectedSquare, setSelectedSquare] = useState(null);
-	const [themeColor, setThemeColor] = useState("green");
-	const [assistLevel, setAssistLevel] = useState(0);
 
 	const setSquare = useCallback(
 		(value) => {
 			const newGrid = [...gridValues];
 			newGrid[selectedSquare] = value;
 
-			if (assistLevel >= 0 && newGrid.join("") !== solution.complete.join("")) {
+			if (settings.showCompletions >= 0 && newGrid.join("") !== solution.complete.join("")) {
 				const { column, grid, row } = position(selectedSquare);
 				const timeline = new TimelineMax();
 				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
@@ -37,15 +44,15 @@ const App = () => {
 			setSelectedSquare(null);
 			setGridValues(newGrid);
 		},
-		[gridValues, selectedSquare, setGridValues, setSelectedSquare, assistLevel, solution],
+		[gridValues, selectedSquare, setGridValues, setSelectedSquare, settings.showCompletions, solution],
 	);
 
 	const themeStyles = useMemo(
 		() => ({
-			"--glow-color": `var(--${themeColor}-glow)`,
-			"--theme-color": `var(--${themeColor}-theme)`,
+			"--glow-color": `var(--${settings.theme}-glow)`,
+			"--theme-color": `var(--${settings.theme}-theme)`,
 		}),
-		[themeColor],
+		[settings.theme],
 	);
 
 	useEffect(() => {
@@ -71,21 +78,19 @@ const App = () => {
 					selectedSquare={selectedSquare}
 					onSelectSquare={setSelectedSquare}
 					puzzleId={puzzleId}
-					assistLevel={assistLevel}
+					showDuplicates={settings.showDuplicates}
+					showHints={settings.showHints}
+					showIncorrect={settings.showIncorrect}
 					solutionValues={solution.complete}
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>
 			<div className={styles.footer}>
 				<SettingsMenu
-					difficulty={difficulty}
-					setDifficulty={setDifficulty}
-					theme={themeColor}
-					setTheme={setThemeColor}
+					settings={settings}
+					setSettings={setSettings}
 					onReset={reset}
-					onNewGame={() => createNewPuzzle(difficulty)}
-					assistLevel={assistLevel}
-					setAssistLevel={setAssistLevel}
+					onNewGame={() => createNewPuzzle(settings.difficulty)}
 				/>
 			</div>
 		</div>
