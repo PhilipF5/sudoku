@@ -26,9 +26,6 @@ code {
 	);
 	--pink-theme: rgb(253, 130, 237);
 
-	--red-glow: rgba(255, 0, 0, 0.502);
-	--red-theme: rgb(255, 0, 0);
-
 	--yellow-glow: rgba(255, 255, 0, 0.502);
 	--yellow-theme: rgb(255, 255, 0);
 }

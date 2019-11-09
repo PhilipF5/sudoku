@@ -42,7 +42,7 @@ const SettingsMenu = ({
 				<div className={styles.menu}>
 					<SettingsMenuItem
 						name="Theme"
-						options={["blue", "green", "pink", "red", "yellow"]}
+						options={["blue", "green", "pink", "yellow"]}
 						onChange={setTheme}
 						value={theme}
 					/>
