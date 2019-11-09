@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./NumberButton.module.css";
 
 const NumberButton = ({ number, onSetSquare }) => (
@@ -7,4 +7,4 @@ const NumberButton = ({ number, onSetSquare }) => (
 	</div>
 );
 
-export default NumberButton;
+export default memo(NumberButton);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Version from "../Version/Version";
 import styles from "./Info.module.css";
 
@@ -23,4 +23,4 @@ const Info = () => (
 	</div>
 );
 
-export default Info;
+export default memo(Info);

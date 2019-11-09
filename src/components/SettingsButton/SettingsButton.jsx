@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./SettingsButton.module.css";
 
 const SettingsButton = ({ onClick, children }) => {
@@ -9,4 +9,4 @@ const SettingsButton = ({ onClick, children }) => {
 	);
 };
 
-export default SettingsButton;
+export default memo(SettingsButton);

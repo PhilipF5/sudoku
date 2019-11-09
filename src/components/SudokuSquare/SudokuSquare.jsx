@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { Linear, TimelineMax, TweenMax } from "gsap";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./SudokuSquare.css";
 import styles from "./SudokuSquare.module.css";
 
@@ -70,4 +70,4 @@ const SudokuSquare = ({
 
 const isThirdOrSixthInGroup = (index) => (index + 1) % 3 === 0 && index < 8;
 
-export default SudokuSquare;
+export default memo(SudokuSquare);

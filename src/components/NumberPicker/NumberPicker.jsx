@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import NumberButton from "../NumberButton/NumberButton";
 import styles from "./NumberPicker.module.css";
 
@@ -10,4 +10,4 @@ const NumberPicker = ({ setSquare }) => (
 	</div>
 );
 
-export default NumberPicker;
+export default memo(NumberPicker);

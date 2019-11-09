@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { valueWouldBeDuplicate } from "../../utilities/gridHelpers";
 import styles from "./SquareHints.module.css";
 
@@ -16,4 +16,4 @@ const SquareHints = ({ gridValues, position }) => {
 	);
 };
 
-export default SquareHints;
+export default memo(SquareHints);

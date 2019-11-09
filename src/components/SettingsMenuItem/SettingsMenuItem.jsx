@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useCallback, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import styles from "./SettingsMenuItem.module.css";
 
 const SettingsMenuItem = ({ name, options, onChange, value }) => {
@@ -32,4 +32,4 @@ const SettingsMenuItem = ({ name, options, onChange, value }) => {
 	);
 };
 
-export default SettingsMenuItem;
+export default memo(SettingsMenuItem);
