@@ -1,8 +1,8 @@
 .picker {
 	display: grid;
+	gap: 10px;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
-	height: 250px;
+	place-items: center;
 	place-self: center;
-	width: 250px;
 }

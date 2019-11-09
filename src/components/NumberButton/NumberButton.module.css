@@ -16,3 +16,7 @@
 	background-color: var(--theme-color);
 	color: black;
 }
+
+.number:last-of-type {
+	grid-column: 2;
+}
