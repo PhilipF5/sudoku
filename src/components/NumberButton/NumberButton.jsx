@@ -2,9 +2,9 @@ import React, { memo } from "react";
 import styles from "./NumberButton.module.css";
 
 const NumberButton = ({ number, onSetSquare }) => (
-	<div className={styles.number} onClick={() => onSetSquare(number)}>
+	<button className={styles.number} onClick={() => onSetSquare(number)}>
 		{number}
-	</div>
+	</button>
 );
 
 export default memo(NumberButton);

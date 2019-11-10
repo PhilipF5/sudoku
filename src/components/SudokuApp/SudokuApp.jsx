@@ -85,14 +85,14 @@ const App = () => {
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>
-			<div className={styles.footer}>
+			<footer className={styles.footer}>
 				<SettingsMenu
 					settings={settings}
 					setSettings={setSettings}
 					onReset={reset}
 					onNewGame={() => createNewPuzzle(settings.difficulty)}
 				/>
-			</div>
+			</footer>
 		</div>
 	);
 };

@@ -3,10 +3,10 @@ import Info from "../Info/Info";
 import styles from "./Header.module.css";
 
 const Header = () => (
-	<div className={styles.header}>
+	<header className={styles.header}>
 		<div className={styles.title}>SUDOKU</div>
 		<Info />
-	</div>
+	</header>
 );
 
 export default memo(Header);
