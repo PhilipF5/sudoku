@@ -31,11 +31,7 @@ code {
 }
 
 button {
-	background-color: transparent;
-	border: none;
-	color: inherit;
-	font-size: inherit;
-	padding: none;
+	all: inherit;
 }
 
 button:focus {
