@@ -1,4 +1,4 @@
-import { Linear, Power3, TimelineMax, TweenMax } from "gsap";
+import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { usePuzzle } from "../../hooks";
 import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities/gridHelpers";
@@ -29,7 +29,7 @@ const App = () => {
 
 			if (settings.showCompletions >= 0 && newGrid.join("") !== solution.complete.join("")) {
 				const { column, grid, row } = position(selectedSquare);
-				const timeline = new TimelineMax();
+				const timeline = gsap.timeline();
 				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
 					timeline.add(animateRowSolved(row));
 				}
@@ -57,15 +57,16 @@ const App = () => {
 
 	useEffect(() => {
 		if (solved) {
-			TweenMax.staggerTo(
-				".square",
-				1,
-				{ filter: "hue-rotate(360deg)", repeat: -1, ease: Linear.easeInOut },
-				{ each: 0.5, from: "start", grid: [9, 9] },
-			);
+			gsap.to(".square", {
+				duration: 1,
+				filter: "hue-rotate(360deg)",
+				repeat: -1,
+				ease: "power0.none",
+				stagger: { each: 0.5, from: "start", grid: [9, 9] },
+			});
 		} else {
-			TweenMax.killTweensOf(".square");
-			TweenMax.to(".square", 1, { filter: "hue-rotate(0deg)", ease: Linear.easeInOut });
+			gsap.killTweensOf(".square");
+			gsap.to(".square", { duration: 1, filter: "hue-rotate(0deg)", ease: "power0.none" });
 		}
 	}, [solved]);
 
@@ -102,17 +103,14 @@ const animateGridSolved = (grid) => animateSectionSolved("grid", grid, [3, 3]);
 const animateRowSolved = (row) => animateSectionSolved("row", row, [9, 1]);
 
 const animateSectionSolved = (type, index, grid) => {
-	return TweenMax.staggerTo(
-		`.square[data-${type}="${index}"`,
-		1,
-		{
-			className: "+=solvedFlash",
-			repeat: 1,
-			yoyo: true,
-			ease: Power3.easeOut,
-		},
-		{ each: 0.1, from: "center", grid },
-	);
+	return gsap.to(`.square[data-${type}="${index}"`, {
+		duration: 1,
+		className: "+=solvedFlash",
+		repeat: 1,
+		yoyo: true,
+		ease: "power3.easeOut",
+		stagger: { each: 0.1, from: "center", grid },
+	});
 };
 
 export default App;

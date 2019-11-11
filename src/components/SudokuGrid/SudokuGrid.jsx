@@ -1,4 +1,4 @@
-import { Power1, TweenLite } from "gsap";
+import { gsap } from "gsap";
 import React, { useCallback, useState } from "react";
 import { position, valueIsDuplicate } from "../../utilities/gridHelpers";
 import SquareHints from "../SquareHints/SquareHints";
@@ -24,8 +24,8 @@ const SudokuGrid = ({
 		if (selectedSquare === null) {
 			const rotationY = normalize(e.clientX, gridPos.right, gridPos.left, 50);
 			const rotationX = normalize(e.clientY, gridPos.top, gridPos.bottom, 50);
-			TweenLite.killTweensOf(`.${styles.grid}`);
-			TweenLite.to(`.${styles.grid}`, 0.5, { rotationX, rotationY, ease: Power1.easeOut });
+			gsap.killTweensOf(`.${styles.grid}`);
+			gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX, rotationY, ease: "power1.easeOut" });
 		}
 	};
 	return (
