@@ -105,7 +105,9 @@ const animateRowSolved = (row) => animateSectionSolved("row", row, [9, 1]);
 const animateSectionSolved = (type, index, grid) => {
 	return gsap.to(`.square[data-${type}="${index}"`, {
 		duration: 1,
-		className: "+=solvedFlash",
+		"--box-shadow-color": "rgba(255, 255, 255, 0.902)",
+		borderColor: "white",
+		color: "white",
 		repeat: 1,
 		yoyo: true,
 		ease: "power3.easeOut",

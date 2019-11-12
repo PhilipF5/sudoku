@@ -7,16 +7,16 @@ body {
 }
 
 :root {
-	--blue-glow: #00cbff80;
+	--blue-glow: rgba(0, 203, 255, 0.502);
 	--blue-theme: #00ccff;
 
-	--green-glow: #00ff0080;
+	--green-glow: rgba(0, 255, 0, 0.502);
 	--green-theme: #00ff00;
 
-	--pink-glow: #fd49e580;
+	--pink-glow: rgba(253, 73, 229, 0.502);
 	--pink-theme: #fd82ed;
 
-	--yellow-glow: #ffff0080;
+	--yellow-glow: rgba(255, 255, 0, 0.502);
 	--yellow-theme: #ffff00;
 }
 

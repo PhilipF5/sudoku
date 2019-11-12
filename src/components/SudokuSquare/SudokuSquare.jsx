@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { gsap } from "gsap";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import "./SudokuSquare.css";
 import styles from "./SudokuSquare.module.css";
 
 const SudokuSquare = ({
