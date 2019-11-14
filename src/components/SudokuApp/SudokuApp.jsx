@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { usePuzzle } from "../../hooks";
-import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities/gridHelpers";
+import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
 import SettingsMenu from "../SettingsMenu/SettingsMenu";
