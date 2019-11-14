@@ -21,6 +21,7 @@ const App = () => {
 		settings.difficulty,
 	);
 	const [selectedSquare, setSelectedSquare] = useState(null);
+	const [loaded, setLoaded] = useState(false);
 
 	const setSquare = useCallback(
 		(value) => {
@@ -66,23 +67,33 @@ const App = () => {
 				ease: "power0.none",
 				stagger: { each: 0.5, from: "start", grid: [9, 9], repeat: -1 },
 			});
-		} else {
-			gsap.killTweensOf(".square");
-			gsap.to(".square", { duration: 1, filter: "hue-rotate(0deg)", ease: "power0.none" });
 		}
 	}, [solved]);
+
+	useEffect(() => {
+		setLoaded(false);
+		gsap.killTweensOf(".square");
+		gsap.set(".square", { clearProps: "all" });
+		gsap.set(".square", { opacity: 0 });
+		gsap.set(".square", {
+			delay: 1,
+			opacity: 1,
+			stagger: { each: 0.025, from: "start" },
+			onComplete: () => setLoaded(true),
+		});
+	}, [puzzleId]);
 
 	return (
 		<div className={styles.app} style={themeStyles}>
 			<Header />
 			<div className={styles.layout}>
 				<SudokuGrid
-					gridValues={gridValues}
+					gridValues={loaded ? gridValues : Array.apply(null, Array(81))}
 					selectedSquare={selectedSquare}
 					onSelectSquare={setSelectedSquare}
-					puzzleId={puzzleId}
+					puzzleId={loaded && puzzleId}
 					showDuplicates={settings.showDuplicates}
-					showHints={settings.showHints}
+					showHints={loaded && settings.showHints}
 					showIncorrect={settings.showIncorrect}
 					solutionValues={solution.complete}
 				/>
