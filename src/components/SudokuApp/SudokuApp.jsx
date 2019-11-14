@@ -29,17 +29,19 @@ const App = () => {
 
 			if (settings.showCompletions >= 0 && newGrid.join("") !== solution.complete.join("")) {
 				const { column, grid, row } = position(selectedSquare);
-				const timeline = gsap.timeline({ paused: true });
+				const targets = [];
 				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
-					timeline.add(animateRowSolved(row), 0);
+					targets.push(`.square[data-row="${row}"]`);
 				}
 				if (valuesInColumn(newGrid, column).join("") === solution.columns[column]) {
-					timeline.add(animateColumnSolved(column), 0);
+					targets.push(`.square[data-column="${column}"]`);
 				}
 				if (valuesInGrid(newGrid, grid).join("") === solution.grids[grid]) {
-					timeline.add(animateGridSolved(grid), 0);
+					targets.push(`.square[data-grid="${grid}"]`);
 				}
-				timeline.play();
+				if (targets.length) {
+					animateSectionSolved(targets.join(", "));
+				}
 			}
 
 			setSelectedSquare(null);
@@ -98,19 +100,15 @@ const App = () => {
 	);
 };
 
-const animateColumnSolved = (column) => animateSectionSolved("column", column, [1, 9]);
-const animateGridSolved = (grid) => animateSectionSolved("grid", grid, [3, 3]);
-const animateRowSolved = (row) => animateSectionSolved("row", row, [9, 1]);
-
-const animateSectionSolved = (type, index, grid) => {
-	return gsap.to(`.square[data-${type}="${index}"`, {
+const animateSectionSolved = (targets) => {
+	return gsap.to(targets, {
 		duration: 0.5,
 		"--box-shadow-color": "rgba(255, 255, 255, 0.902)",
 		borderColor: "white",
 		color: "white",
 		ease: "power3.easeOut",
-		overwrite: true,
-		stagger: { amount: 0.5, from: "center", grid, repeat: 1, yoyo: true },
+		overwrite: "auto",
+		stagger: { amount: 0.5, from: "center", repeat: 1, yoyo: true },
 	});
 };
 

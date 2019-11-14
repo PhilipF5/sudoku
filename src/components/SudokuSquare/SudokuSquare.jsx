@@ -38,7 +38,7 @@ const SudokuSquare = ({
 						})
 						.repeat(-1),
 				);
-		} else {
+		} else if (timeline.current.isActive()) {
 			timeline.current.pause();
 			gsap.to(element.current, { duration: 0.75, rotationX: 0, rotationY: 0, scale: 1, ease: "power0.none" });
 		}
