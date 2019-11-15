@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import React, { useCallback, useState } from "react";
-import { position, valueIsDuplicate } from "../../utilities/gridHelpers";
+import { positionOf, valueIsDuplicate } from "../../utilities/gridHelpers";
 import SquareHints from "../SquareHints/SquareHints";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
@@ -31,7 +31,7 @@ const SudokuGrid = ({
 	return (
 		<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
 			{gridValues.map((value, index, array) => {
-				const pos = position(index);
+				const pos = positionOf(index);
 				return (
 					<SudokuSquare
 						index={index}

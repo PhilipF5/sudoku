@@ -1,7 +1,7 @@
 export const columnOfSquare = (index) => index % 9;
 export const rowOfSquare = (index) => Math.trunc(index / 9);
 export const gridOfSquare = (index) => Math.trunc(columnOfSquare(index) / 3) + Math.trunc(rowOfSquare(index) / 3) * 3;
-export const position = (index) => ({
+export const positionOf = (index) => ({
 	column: columnOfSquare(index),
 	grid: gridOfSquare(index),
 	row: rowOfSquare(index),

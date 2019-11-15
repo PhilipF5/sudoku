@@ -1,11 +1,10 @@
-import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { usePuzzle, useStorage } from "../../hooks";
-import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
 import SettingsMenu from "../SettingsMenu/SettingsMenu";
 import SudokuGrid from "../SudokuGrid/SudokuGrid";
+import * as animations from "./SudokuApp.animations";
 import styles from "./SudokuApp.module.css";
 
 const App = () => {
@@ -33,21 +32,8 @@ const App = () => {
 			const newGrid = [...gridValues];
 			newGrid[selectedSquare] = value;
 
-			if (settings.showCompletions >= 0 && newGrid.join("") !== solution.complete.join("")) {
-				const { column, grid, row } = position(selectedSquare);
-				const targets = [];
-				if (valuesInRow(newGrid, row).join("") === solution.rows[row]) {
-					targets.push(`.square[data-row="${row}"]`);
-				}
-				if (valuesInColumn(newGrid, column).join("") === solution.columns[column]) {
-					targets.push(`.square[data-column="${column}"]`);
-				}
-				if (valuesInGrid(newGrid, grid).join("") === solution.grids[grid]) {
-					targets.push(`.square[data-grid="${grid}"]`);
-				}
-				if (targets.length) {
-					animateSectionSolved(targets.join(", "));
-				}
+			if (settings.showCompletions && newGrid.join("") !== solution.complete.join("")) {
+				animations.animateSectionSolved(newGrid, solution, selectedSquare);
 			}
 
 			setSelectedSquare(null);
@@ -65,27 +51,12 @@ const App = () => {
 	);
 
 	useEffect(() => {
-		if (solved) {
-			gsap.to(".square", {
-				duration: 1,
-				filter: "hue-rotate(360deg)",
-				ease: "power0.none",
-				stagger: { each: 0.5, from: "start", grid: [9, 9], repeat: -1 },
-			});
-		}
+		solved && animations.animatePuzzleSolved();
 	}, [solved]);
 
 	useEffect(() => {
 		setLoaded(false);
-		gsap.killTweensOf(".square");
-		gsap.set(".square", { clearProps: "all" });
-		gsap.set(".square", { opacity: 0 });
-		gsap.set(".square", {
-			delay: 1,
-			opacity: 1,
-			stagger: { each: 0.025, from: "start" },
-			onComplete: () => setLoaded(true),
-		});
+		animations.animateNewPuzzle().eventCallback("onComplete", () => setLoaded(true));
 	}, [puzzleId]);
 
 	useEffect(() => {
@@ -120,18 +91,6 @@ const App = () => {
 			</footer>
 		</div>
 	);
-};
-
-const animateSectionSolved = (targets) => {
-	return gsap.to(targets, {
-		duration: 0.5,
-		"--box-shadow-color": "rgba(255, 255, 255, 0.902)",
-		borderColor: "white",
-		color: "white",
-		ease: "power3.easeOut",
-		overwrite: "auto",
-		stagger: { amount: 0.5, from: "center", repeat: 1, yoyo: true },
-	});
 };
 
 const defaultSettings = {
