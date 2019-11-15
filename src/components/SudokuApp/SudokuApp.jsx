@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { usePuzzle } from "../../hooks";
+import { usePuzzle, useStorage } from "../../hooks";
 import { position, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
@@ -9,19 +9,24 @@ import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import styles from "./SudokuApp.module.css";
 
 const App = () => {
-	const [settings, setSettings] = useState({
-		theme: "green",
-		difficulty: "easy",
-		showCompletions: true,
-		showDuplicates: false,
-		showHints: false,
-		showIncorrect: false,
-	});
+	const storage = useStorage();
+	const [settings, setSettings] = useState(storage.get("settings") || defaultSettings);
 	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(
 		settings.difficulty,
 	);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [loaded, setLoaded] = useState(false);
+
+	const updateSettings = useCallback(
+		(newSettings) => {
+			setSettings((oldSettings) => {
+				const mergedSettings = { ...oldSettings, ...newSettings };
+				storage.set("settings", mergedSettings);
+				return mergedSettings;
+			});
+		},
+		[storage],
+	);
 
 	const setSquare = useCallback(
 		(value) => {
@@ -83,6 +88,12 @@ const App = () => {
 		});
 	}, [puzzleId]);
 
+	useEffect(() => {
+		if (settings && settings !== defaultSettings) {
+			storage.set("settings", settings);
+		}
+	});
+
 	return (
 		<div className={styles.app} style={themeStyles}>
 			<Header />
@@ -102,7 +113,7 @@ const App = () => {
 			<footer className={styles.footer}>
 				<SettingsMenu
 					settings={settings}
-					setSettings={setSettings}
+					setSettings={updateSettings}
 					onReset={reset}
 					onNewGame={() => createNewPuzzle(settings.difficulty)}
 				/>
@@ -121,6 +132,15 @@ const animateSectionSolved = (targets) => {
 		overwrite: "auto",
 		stagger: { amount: 0.5, from: "center", repeat: 1, yoyo: true },
 	});
+};
+
+const defaultSettings = {
+	theme: "green",
+	difficulty: "easy",
+	showCompletions: true,
+	showDuplicates: false,
+	showHints: false,
+	showIncorrect: false,
 };
 
 export default App;

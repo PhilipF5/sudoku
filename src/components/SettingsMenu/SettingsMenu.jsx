@@ -34,37 +34,37 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 					<SettingsMenuItem
 						name="Theme"
 						options={["blue", "green", "pink", "yellow"]}
-						onChange={(theme) => setSettings((settings) => ({ ...settings, theme }))}
+						onChange={(theme) => setSettings({ theme })}
 						value={settings.theme}
 					/>
 					<SettingsMenuItem
 						name="Difficulty"
 						options={["easy", "medium", "hard"]}
-						onChange={(difficulty) => setSettings((settings) => ({ ...settings, difficulty }))}
+						onChange={(difficulty) => setSettings({ difficulty })}
 						value={settings.difficulty}
 					/>
 					<SettingsMenuItem
 						name="Show Completions"
 						options={[false, true]}
-						onChange={(showCompletions) => setSettings((settings) => ({ ...settings, showCompletions }))}
+						onChange={(showCompletions) => setSettings({ showCompletions })}
 						value={settings.showCompletions}
 					/>
 					<SettingsMenuItem
 						name="Show Duplicates"
 						options={[false, true]}
-						onChange={(showDuplicates) => setSettings((settings) => ({ ...settings, showDuplicates }))}
+						onChange={(showDuplicates) => setSettings({ showDuplicates })}
 						value={settings.showDuplicates}
 					/>
 					<SettingsMenuItem
 						name="Show Hints"
 						options={[false, true]}
-						onChange={(showHints) => setSettings((settings) => ({ ...settings, showHints }))}
+						onChange={(showHints) => setSettings({ showHints })}
 						value={settings.showHints}
 					/>
 					<SettingsMenuItem
 						name="Show Incorrect"
 						options={[false, true]}
-						onChange={(showIncorrect) => setSettings((settings) => ({ ...settings, showIncorrect }))}
+						onChange={(showIncorrect) => setSettings({ showIncorrect })}
 						value={settings.showIncorrect}
 					/>
 					<div className={styles.buttons}>
