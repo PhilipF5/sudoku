@@ -7,7 +7,7 @@ import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import * as animations from "./SudokuApp.animations";
 import styles from "./SudokuApp.module.css";
 
-const App = () => {
+const SudokuApp = () => {
 	const storage = useStorage();
 	const [settings, setSettings] = useState(storage.get("settings") || defaultSettings);
 	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(
@@ -102,4 +102,4 @@ const defaultSettings = {
 	showIncorrect: false,
 };
 
-export default App;
+export default SudokuApp;
