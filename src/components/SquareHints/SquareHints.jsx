@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { valueWouldBeDuplicate } from "../../utilities/gridHelpers";
+import { valueWouldBeDuplicate } from "../../utilities";
 import styles from "./SquareHints.module.css";
 
 const SquareHints = ({ gridValues, position }) => {

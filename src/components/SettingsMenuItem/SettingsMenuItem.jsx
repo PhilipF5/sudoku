@@ -10,6 +10,7 @@ const SettingsMenuItem = ({ name, options, onChange, value }) => {
 		},
 		[onChange],
 	);
+
 	const optionButtons = useMemo(
 		() =>
 			options.map((o) => (

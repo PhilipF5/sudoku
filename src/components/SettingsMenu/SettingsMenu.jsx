@@ -1,6 +1,6 @@
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import SettingsButton from "../SettingsButton/SettingsButton";
 import SettingsMenuItem from "../SettingsMenuItem/SettingsMenuItem";
 import styles from "./SettingsMenu.module.css";
@@ -15,6 +15,22 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 		},
 		[toggleOpen],
 	);
+
+	const createMenuItem = useCallback(
+		({ property, displayName, options }) => {
+			return (
+				<SettingsMenuItem
+					name={displayName}
+					options={options || [false, true]}
+					onChange={(value) => setSettings({ [property]: value })}
+					value={settings[property]}
+				/>
+			);
+		},
+		[settings, setSettings],
+	);
+
+	const menuItems = useMemo(() => settingConfigs.map((c) => createMenuItem(c)), [createMenuItem]);
 
 	useEffect(() => {
 		if (open) {
@@ -31,42 +47,7 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 			</button>
 			{open && (
 				<div className={styles.menu}>
-					<SettingsMenuItem
-						name="Theme"
-						options={["blue", "green", "pink", "yellow"]}
-						onChange={(theme) => setSettings({ theme })}
-						value={settings.theme}
-					/>
-					<SettingsMenuItem
-						name="Difficulty"
-						options={["easy", "medium", "hard"]}
-						onChange={(difficulty) => setSettings({ difficulty })}
-						value={settings.difficulty}
-					/>
-					<SettingsMenuItem
-						name="Show Completions"
-						options={[false, true]}
-						onChange={(showCompletions) => setSettings({ showCompletions })}
-						value={settings.showCompletions}
-					/>
-					<SettingsMenuItem
-						name="Show Duplicates"
-						options={[false, true]}
-						onChange={(showDuplicates) => setSettings({ showDuplicates })}
-						value={settings.showDuplicates}
-					/>
-					<SettingsMenuItem
-						name="Show Hints"
-						options={[false, true]}
-						onChange={(showHints) => setSettings({ showHints })}
-						value={settings.showHints}
-					/>
-					<SettingsMenuItem
-						name="Show Incorrect"
-						options={[false, true]}
-						onChange={(showIncorrect) => setSettings({ showIncorrect })}
-						value={settings.showIncorrect}
-					/>
+					{menuItems}
 					<div className={styles.buttons}>
 						<SettingsButton onClick={onNewGame}>New Game</SettingsButton>
 						<SettingsButton onClick={onReset}>Reset</SettingsButton>
@@ -76,5 +57,14 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 		</div>
 	);
 };
+
+const settingConfigs = [
+	{ property: "theme", displayName: "Theme", options: ["blue", "green", "pink", "yellow"] },
+	{ property: "difficulty", displayName: "Difficulty", options: ["easy", "medium", "hard"] },
+	{ property: "showCompletions", displayName: "Show Completions" },
+	{ property: "showDuplicates", displayName: "Show Duplicates" },
+	{ property: "showHints", displayName: "Show Hints" },
+	{ property: "showIncorrect", displayName: "Show Incorrect" },
+];
 
 export default SettingsMenu;

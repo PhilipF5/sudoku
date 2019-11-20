@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import React, { useCallback, useState } from "react";
-import { positionOf, valueIsDuplicate } from "../../utilities/gridHelpers";
+import { positionOf, valueIsDuplicate } from "../../utilities";
 import SquareHints from "../SquareHints/SquareHints";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
 import styles from "./SudokuGrid.module.css";
@@ -20,14 +20,18 @@ const SudokuGrid = ({
 		const { bottom, left, right, top } = node.getBoundingClientRect();
 		setGridPos({ bottom, left, right, top });
 	}, []);
+
 	const handleMouseMove = (e) => {
-		if (selectedSquare === null) {
-			const rotationY = normalize(e.clientX, gridPos.right, gridPos.left, 50);
-			const rotationX = normalize(e.clientY, gridPos.top, gridPos.bottom, 50);
-			gsap.killTweensOf(`.${styles.grid}`);
-			gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX, rotationY, ease: "power1.easeOut" });
+		if (selectedSquare !== null) {
+			return;
 		}
+
+		const rotationY = normalize(e.clientX, gridPos.right, gridPos.left, 50);
+		const rotationX = normalize(e.clientY, gridPos.top, gridPos.bottom, 50);
+		gsap.killTweensOf(`.${styles.grid}`);
+		gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX, rotationY, ease: "power1.easeOut" });
 	};
+
 	return (
 		<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
 			{gridValues.map((value, index, array) => {

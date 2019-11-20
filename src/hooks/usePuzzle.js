@@ -1,6 +1,6 @@
 import { SudokuSolver } from "@jlguenego/sudoku-generator";
 import { useEffect, useMemo, useState } from "react";
-import { valuesInColumn, valuesInGrid, valuesInRow } from "../utilities/gridHelpers";
+import { valuesInColumn, valuesInGrid, valuesInRow } from "../utilities";
 
 export const usePuzzle = (initialDifficulty = "easy") => {
 	const [{ solution, start }, setPuzzle] = useState(generatePuzzle(initialDifficulty));
