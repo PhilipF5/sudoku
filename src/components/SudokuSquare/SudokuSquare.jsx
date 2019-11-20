@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { gsap } from "gsap";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import * as animations from "./SudokuSquare.animations";
 import styles from "./SudokuSquare.module.css";
 
 const SudokuSquare = ({
@@ -25,22 +26,10 @@ const SudokuSquare = ({
 
 	useEffect(() => {
 		if (selected) {
-			timeline.current = gsap
-				.timeline()
-				.to(element.current, { duration: 0.5, scale: 1.2, ease: "power0.none" })
-				.add(
-					gsap
-						.to(element.current, 3, {
-							rotationX: "+=360_cw",
-							rotationY: "+=360_cw",
-							scale: 1.2,
-							ease: "power0.none",
-						})
-						.repeat(-1),
-				);
+			timeline.current = animations.rotateSquare(element.current);
 		} else if (timeline.current.isActive()) {
 			timeline.current.pause();
-			gsap.to(element.current, { duration: 0.75, rotationX: 0, rotationY: 0, scale: 1, ease: "power0.none" });
+			animations.derotateSquare(element.current);
 		}
 	}, [selected, element, timeline]);
 
