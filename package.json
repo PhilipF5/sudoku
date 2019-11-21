@@ -2,14 +2,15 @@
 	"name": "sudoku",
 	"version": "0.0.0",
 	"author": "Philip Fulgham (https://www.philipfulgham.com)",
-	"repository": "github:PhilipF5/sudoku",
+	"repository": "git://github.com/philipf5/sudoku.git",
 	"private": true,
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"lint": "eslint \"**/*.{js,jsx}\""
+		"lint": "eslint \"**/*.{js,jsx}\"",
+		"now-build": "npm run build"
 	},
 	"husky": {
 		"hooks": {
