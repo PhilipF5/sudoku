@@ -20,6 +20,7 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 		({ property, displayName, options }) => {
 			return (
 				<SettingsMenuItem
+					key={property}
 					name={displayName}
 					options={options || [false, true]}
 					onChange={(value) => setSettings({ [property]: value })}
