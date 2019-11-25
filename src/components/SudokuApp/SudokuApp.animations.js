@@ -36,14 +36,18 @@ export const animateSectionSolved = (gridValues, solution, triggerSquare) => {
 		targets.push(`.square[data-grid="${grid}"]`);
 	}
 	if (targets.length) {
-		return gsap.to(targets.join(", "), {
-			duration: 0.5,
-			"--box-shadow-color": "rgba(255, 255, 255, 0.902)",
-			borderColor: "white",
-			color: "white",
-			ease: "power3.easeOut",
-			overwrite: "auto",
-			stagger: { amount: 0.5, from: "center", repeat: 1, yoyo: true },
-		});
+		const targetSelector = targets.join(", ");
+		return gsap
+			.timeline()
+			.to(targetSelector, {
+				duration: 0.5,
+				"--box-shadow-color": "rgba(255, 255, 255, 0.902)",
+				borderColor: "white",
+				color: "white",
+				ease: "power3.easeOut",
+				overwrite: "auto",
+				stagger: { amount: 0.5, from: "center", repeat: 1, yoyo: true },
+			})
+			.set(targetSelector, { clearProps: "all" });
 	}
 };
