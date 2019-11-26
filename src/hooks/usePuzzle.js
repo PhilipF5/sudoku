@@ -8,7 +8,10 @@ export const usePuzzle = (initialDifficulty = "easy") => {
 	const [solved, setSolved] = useState(false);
 	const [puzzleId, setPuzzleId] = useState(0);
 	const createNewPuzzle = (difficulty = "easy") => setPuzzle(generatePuzzle(difficulty));
-	const reset = () => setGridValues(start);
+	const reset = () => {
+		setGridValues(start);
+		setSolved(false);
+	};
 
 	const solutionPieces = useMemo(() => {
 		const slices = [0, 1, 2, 3, 4, 5, 6, 7, 8];

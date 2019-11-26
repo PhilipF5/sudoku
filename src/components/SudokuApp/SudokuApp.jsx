@@ -1,3 +1,4 @@
+import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { usePuzzle, useStorage } from "../../hooks";
 import Header from "../Header/Header";
@@ -50,6 +51,15 @@ const SudokuApp = () => {
 		[settings.theme],
 	);
 
+	const handleReset = useCallback(() => {
+		if (solved) {
+			gsap.getById("solvedAnimation")
+				.pause(0)
+				.kill();
+		}
+		reset();
+	}, [reset, solved]);
+
 	useEffect(() => {
 		solved && animations.animatePuzzleSolved();
 	}, [solved]);
@@ -79,13 +89,14 @@ const SudokuApp = () => {
 					showIncorrect={settings.showIncorrect}
 					solutionValues={solution.complete}
 					tiltFactor={settings.tiltFactor}
+					solved={solved}
 				/>
 				<NumberPicker disabled={selectedSquare === null} setSquare={setSquare} />
 			</div>
 			<SettingsMenu
 				settings={settings}
 				setSettings={updateSettings}
-				onReset={reset}
+				onReset={handleReset}
 				onNewGame={() => createNewPuzzle(settings.difficulty)}
 			/>
 		</div>

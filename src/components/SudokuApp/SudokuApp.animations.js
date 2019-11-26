@@ -18,6 +18,7 @@ export const animatePuzzleSolved = () => {
 	return gsap.to(".square", {
 		duration: 1,
 		filter: "hue-rotate(360deg)",
+		id: "solvedAnimation",
 		ease: "power0.none",
 		stagger: { each: 0.5, from: "start", grid: [9, 9], repeat: -1 },
 	});
