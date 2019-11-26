@@ -78,6 +78,7 @@ const SudokuApp = () => {
 					showHints={loaded && settings.showHints}
 					showIncorrect={settings.showIncorrect}
 					solutionValues={solution.complete}
+					tiltFactor={settings.tiltFactor}
 				/>
 				<NumberPicker setSquare={setSquare} />
 			</div>
@@ -96,6 +97,7 @@ const SudokuApp = () => {
 const defaultSettings = {
 	theme: "green",
 	difficulty: "easy",
+	tiltFactor: "heavy",
 	showCompletions: true,
 	showDuplicates: false,
 	showHints: false,

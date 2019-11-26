@@ -62,6 +62,7 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 const settingConfigs = [
 	{ property: "theme", displayName: "Theme", options: ["blue", "green", "pink", "yellow"] },
 	{ property: "difficulty", displayName: "Difficulty", options: ["easy", "medium", "hard"] },
+	{ property: "tiltFactor", displayName: "Tilt Factor", options: ["none", "light", "heavy"] },
 	{ property: "showCompletions", displayName: "Show Completions" },
 	{ property: "showDuplicates", displayName: "Show Duplicates" },
 	{ property: "showHints", displayName: "Show Hints" },

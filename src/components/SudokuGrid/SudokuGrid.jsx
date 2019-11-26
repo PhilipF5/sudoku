@@ -14,6 +14,7 @@ const SudokuGrid = ({
 	showHints,
 	showIncorrect,
 	solutionValues,
+	tiltFactor,
 }) => {
 	const [gridPos, setGridPos] = useState({ bottom: 0, left: 0, right: 0, top: 0 });
 	const gridRef = useCallback((node) => {
@@ -23,12 +24,12 @@ const SudokuGrid = ({
 
 	const updateGridTilt = useCallback(
 		(x, y) => {
-			const rotationY = normalize(x, gridPos.right, gridPos.left, 50);
-			const rotationX = normalize(y, gridPos.top, gridPos.bottom, 50);
+			const rotationY = normalize(x, gridPos.right, gridPos.left, gridTilts[tiltFactor]);
+			const rotationX = normalize(y, gridPos.top, gridPos.bottom, gridTilts[tiltFactor]);
 			gsap.killTweensOf(`.${styles.grid}`);
 			gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX, rotationY, ease: "power1.easeOut" });
 		},
-		[gridPos],
+		[gridPos, tiltFactor],
 	);
 
 	const handleMouseMove = (e) => {
@@ -67,6 +68,12 @@ const SudokuGrid = ({
 			})}
 		</div>
 	);
+};
+
+const gridTilts = {
+	none: 0,
+	light: 15,
+	heavy: 50,
 };
 
 const normalize = (value, lower, upper, scale) => {
