@@ -22,7 +22,7 @@ const SudokuSquare = ({
 	const inThirdRow = useMemo(() => isThirdOrSixthInGroup(row), [row]);
 	const elementRef = useCallback((node) => node && (element.current = node), []);
 	const [lastPuzzleId, setLastPuzzleId] = useState(puzzleId);
-	const handleClick = () => onSelect(selected ? null : index);
+	const handleClick = (e) => onSelect(selected ? null : index, e.clientX, e.clientY);
 
 	useEffect(() => {
 		if (selected) {

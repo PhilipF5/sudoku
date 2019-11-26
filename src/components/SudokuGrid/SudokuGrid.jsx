@@ -21,16 +21,29 @@ const SudokuGrid = ({
 		setGridPos({ bottom, left, right, top });
 	}, []);
 
-	const handleMouseMove = (e) => {
-		if (selectedSquare !== null) {
-			return;
-		}
+	const updateGridTilt = useCallback(
+		(x, y) => {
+			const rotationY = normalize(x, gridPos.right, gridPos.left, 50);
+			const rotationX = normalize(y, gridPos.top, gridPos.bottom, 50);
+			gsap.killTweensOf(`.${styles.grid}`);
+			gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX, rotationY, ease: "power1.easeOut" });
+		},
+		[gridPos],
+	);
 
-		const rotationY = normalize(e.clientX, gridPos.right, gridPos.left, 50);
-		const rotationX = normalize(e.clientY, gridPos.top, gridPos.bottom, 50);
-		gsap.killTweensOf(`.${styles.grid}`);
-		gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX, rotationY, ease: "power1.easeOut" });
+	const handleMouseMove = (e) => {
+		if (selectedSquare === null) {
+			updateGridTilt(e.clientX, e.clientY);
+		}
 	};
+
+	const handleSelectSquare = useCallback(
+		(square, x, y) => {
+			updateGridTilt(x, y);
+			onSelectSquare(square);
+		},
+		[onSelectSquare, updateGridTilt],
+	);
 
 	return (
 		<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
@@ -40,7 +53,7 @@ const SudokuGrid = ({
 					<SudokuSquare
 						index={index}
 						value={value}
-						onSelect={onSelectSquare}
+						onSelect={handleSelectSquare}
 						key={index}
 						selected={selectedSquare === index}
 						position={pos}
