@@ -80,7 +80,7 @@ const SudokuApp = () => {
 					solutionValues={solution.complete}
 					tiltFactor={settings.tiltFactor}
 				/>
-				<NumberPicker setSquare={setSquare} />
+				<NumberPicker disabled={selectedSquare === null} setSquare={setSquare} />
 			</div>
 			<footer className={styles.footer}>
 				<SettingsMenu

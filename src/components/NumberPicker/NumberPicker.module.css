@@ -5,4 +5,10 @@
 	grid-template-rows: repeat(3, 1fr);
 	place-items: center;
 	place-self: center;
+	transition: opacity 0.25s linear;
+}
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
 }
