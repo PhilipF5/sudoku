@@ -16,6 +16,8 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 		[toggleOpen],
 	);
 
+	const handleMenuClick = useCallback((e) => e.stopPropagation(), []);
+
 	const createMenuItem = useCallback(
 		({ property, displayName, options }) => {
 			return (
@@ -42,7 +44,7 @@ const SettingsMenu = ({ settings, setSettings, onReset, onNewGame }) => {
 	}, [toggleOpen, open]);
 
 	return (
-		<div className={styles.settings}>
+		<div className={styles.settings} onClick={handleMenuClick}>
 			<button className={styles.gearButton} onClick={handleGearClick}>
 				<FontAwesomeIcon icon={faCog} />
 			</button>
