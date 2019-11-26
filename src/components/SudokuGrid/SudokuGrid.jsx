@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { positionOf, valueIsDuplicate } from "../../utilities";
 import SquareHints from "../SquareHints/SquareHints";
 import SudokuSquare from "../SudokuSquare/SudokuSquare";
@@ -15,6 +15,7 @@ const SudokuGrid = ({
 	showIncorrect,
 	solutionValues,
 	tiltFactor,
+	solved,
 }) => {
 	const [gridPos, setGridPos] = useState({ bottom: 0, left: 0, right: 0, top: 0 });
 	const gridRef = useCallback((node) => {
@@ -39,7 +40,7 @@ const SudokuGrid = ({
 	};
 
 	const handleMouseMove = (e) => {
-		if (selectedSquare === null) {
+		if (selectedSquare === null && !solved) {
 			updateGridTilt(e.clientX, e.clientY);
 		}
 	};
@@ -56,6 +57,10 @@ const SudokuGrid = ({
 		gsap.killTweensOf(`.${styles.grid}`);
 		gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX: 0, rotationY: 0, ease: "power1.easeOut" });
 	}, []);
+
+	useEffect(() => {
+		solved && resetGridTilt();
+	}, [resetGridTilt, solved]);
 
 	return (
 		<div className={styles.container} onMouseLeave={handleMouseLeave}>
