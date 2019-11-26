@@ -9,3 +9,7 @@
 	place-items: center;
 	width: 75vh;
 }
+
+.container {
+	padding: 40px;
+}

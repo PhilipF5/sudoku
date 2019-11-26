@@ -32,6 +32,12 @@ const SudokuGrid = ({
 		[gridPos, tiltFactor],
 	);
 
+	const handleMouseLeave = () => {
+		if (selectedSquare === null) {
+			resetGridTilt();
+		}
+	};
+
 	const handleMouseMove = (e) => {
 		if (selectedSquare === null) {
 			updateGridTilt(e.clientX, e.clientY);
@@ -46,26 +52,33 @@ const SudokuGrid = ({
 		[onSelectSquare, updateGridTilt],
 	);
 
+	const resetGridTilt = useCallback(() => {
+		gsap.killTweensOf(`.${styles.grid}`);
+		gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX: 0, rotationY: 0, ease: "power1.easeOut" });
+	}, []);
+
 	return (
-		<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
-			{gridValues.map((value, index, array) => {
-				const pos = positionOf(index);
-				return (
-					<SudokuSquare
-						index={index}
-						value={value}
-						onSelect={handleSelectSquare}
-						key={index}
-						selected={selectedSquare === index}
-						position={pos}
-						puzzleId={puzzleId}
-						isDupe={showDuplicates && valueIsDuplicate(value, pos, array)}
-						isWrong={showIncorrect && value && gridValues[index] !== solutionValues[index]}
-					>
-						{showHints && !value && <SquareHints gridValues={array} position={pos} />}
-					</SudokuSquare>
-				);
-			})}
+		<div className={styles.container} onMouseLeave={handleMouseLeave}>
+			<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
+				{gridValues.map((value, index, array) => {
+					const pos = positionOf(index);
+					return (
+						<SudokuSquare
+							index={index}
+							value={value}
+							onSelect={handleSelectSquare}
+							key={index}
+							selected={selectedSquare === index}
+							position={pos}
+							puzzleId={puzzleId}
+							isDupe={showDuplicates && valueIsDuplicate(value, pos, array)}
+							isWrong={showIncorrect && value && gridValues[index] !== solutionValues[index]}
+						>
+							{showHints && !value && <SquareHints gridValues={array} position={pos} />}
+						</SudokuSquare>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
