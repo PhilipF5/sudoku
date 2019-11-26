@@ -82,14 +82,12 @@ const SudokuApp = () => {
 				/>
 				<NumberPicker disabled={selectedSquare === null} setSquare={setSquare} />
 			</div>
-			<footer className={styles.footer}>
-				<SettingsMenu
-					settings={settings}
-					setSettings={updateSettings}
-					onReset={reset}
-					onNewGame={() => createNewPuzzle(settings.difficulty)}
-				/>
-			</footer>
+			<SettingsMenu
+				settings={settings}
+				setSettings={updateSettings}
+				onReset={reset}
+				onNewGame={() => createNewPuzzle(settings.difficulty)}
+			/>
 		</div>
 	);
 };

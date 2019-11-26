@@ -1,6 +1,8 @@
 .settings {
+	bottom: 10px;
 	color: var(--theme-color);
-	position: relative;
+	right: 10px;
+	position: absolute;
 }
 
 .gearButton {
