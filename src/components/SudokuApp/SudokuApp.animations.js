@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { positionOf, valuesInColumn, valuesInGrid, valuesInRow } from "../../utilities";
+import { positionOf, valuesInColumn, valuesInRegion, valuesInRow } from "../../utilities";
 
 export const animateNewPuzzle = () => {
 	gsap.killTweensOf(".square");
@@ -24,7 +24,7 @@ export const animatePuzzleSolved = () => {
 };
 
 export const animateSectionSolved = (gridValues, solution, triggerSquare) => {
-	const { column, grid, row } = positionOf(triggerSquare);
+	const { column, region, row } = positionOf(triggerSquare);
 	const targets = [];
 	if (valuesInRow(gridValues, row).join("") === solution.rows[row]) {
 		targets.push(`.square[data-row="${row}"]`);
@@ -32,8 +32,8 @@ export const animateSectionSolved = (gridValues, solution, triggerSquare) => {
 	if (valuesInColumn(gridValues, column).join("") === solution.columns[column]) {
 		targets.push(`.square[data-column="${column}"]`);
 	}
-	if (valuesInGrid(gridValues, grid).join("") === solution.grids[grid]) {
-		targets.push(`.square[data-grid="${grid}"]`);
+	if (valuesInRegion(gridValues, region).join("") === solution.regions[region]) {
+		targets.push(`.square[data-region="${region}"]`);
 	}
 	if (targets.length) {
 		const targetSelector = targets.join(", ");

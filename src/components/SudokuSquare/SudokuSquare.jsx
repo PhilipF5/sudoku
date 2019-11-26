@@ -12,7 +12,7 @@ const SudokuSquare = ({
 	puzzleId,
 	isDupe,
 	isWrong,
-	position: { column, row, grid },
+	position: { column, row, region },
 	children,
 }) => {
 	const [initialValue, setInitialValue] = useState(value);
@@ -53,7 +53,7 @@ const SudokuSquare = ({
 			ref={elementRef}
 			data-column={column}
 			data-row={row}
-			data-grid={grid}
+			data-region={region}
 		>
 			{value}
 			{children}

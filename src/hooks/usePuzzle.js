@@ -1,6 +1,6 @@
 import { SudokuSolver } from "@jlguenego/sudoku-generator";
 import { useEffect, useMemo, useState } from "react";
-import { valuesInColumn, valuesInGrid, valuesInRow } from "../utilities";
+import { valuesInColumn, valuesInRegion, valuesInRow } from "../utilities";
 
 export const usePuzzle = (initialDifficulty = "easy") => {
 	const [{ solution, start }, setPuzzle] = useState(generatePuzzle(initialDifficulty));
@@ -14,7 +14,7 @@ export const usePuzzle = (initialDifficulty = "easy") => {
 		const slices = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 		return {
 			columns: slices.map((s) => valuesInColumn(solution, s).join("")),
-			grids: slices.map((s) => valuesInGrid(solution, s).join("")),
+			regions: slices.map((s) => valuesInRegion(solution, s).join("")),
 			rows: slices.map((s) => valuesInRow(solution, s).join("")),
 		};
 	}, [solution]);
