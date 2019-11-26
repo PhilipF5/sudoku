@@ -19,7 +19,7 @@ const SettingsMenuItem = ({ name, options, onChange, value }) => {
 					onClick={(e) => handleChange(e, o)}
 					key={o}
 				>
-					{typeof o === "boolean" ? o.toString() : o}
+					{typeof o === "boolean" ? booleanToSwitchText(o) : o}
 				</button>
 			)),
 		[handleChange, options, value],
@@ -32,5 +32,7 @@ const SettingsMenuItem = ({ name, options, onChange, value }) => {
 		</div>
 	);
 };
+
+const booleanToSwitchText = (boolean) => (boolean ? "on" : "off");
 
 export default memo(SettingsMenuItem);
