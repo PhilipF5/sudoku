@@ -47,10 +47,12 @@ const SudokuGrid = ({
 
 	const handleSelectSquare = useCallback(
 		(square, x, y) => {
-			updateGridTilt(x, y);
-			onSelectSquare(square);
+			if (!solved) {
+				updateGridTilt(x, y);
+				onSelectSquare(square);
+			}
 		},
-		[onSelectSquare, updateGridTilt],
+		[onSelectSquare, solved, updateGridTilt],
 	);
 
 	const resetGridTilt = useCallback(() => {
