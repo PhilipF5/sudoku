@@ -2,6 +2,8 @@
 
 Sudoku is a popular logic-based number puzzle that became a worldwide phenomenon in the mid-2000s. The objective of the puzzle is to fill a 9×9 grid with the digits 1 through 9, such that each row, each column, and each 3×3 region contains each digit exactly once.
 
+![screenshot](https://github.com/philipf5/sudoku/raw/master/public/screenshot.png)
+
 ## How To Play
 
 Click any not-prefilled square to select it. Then use the numbered buttons on the right to fill the square with one of the numbers 1 through 9.
