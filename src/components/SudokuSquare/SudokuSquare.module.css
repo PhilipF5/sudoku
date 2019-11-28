@@ -45,7 +45,7 @@
 }
 
 .square.bad {
-	color: var(--red-glow);
+	color: #ff000080;
 	text-shadow: 0 0 0.2em #ff0000dd;
 }
 
