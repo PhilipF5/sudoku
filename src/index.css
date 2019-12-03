@@ -23,7 +23,8 @@ body {
 }
 
 button {
-	all: inherit;
+	all: unset;
+	-webkit-text-fill-color: initial;
 }
 
 button:focus {

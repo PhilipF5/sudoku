@@ -8,6 +8,7 @@
 	font-size: 32px;
 	height: 72px;
 	justify-content: center;
+	opacity: inherit;
 	transition: background-color 0.5s linear, border-color 0.5s linear, color 0.5s linear;
 	width: 72px;
 }
