@@ -12,4 +12,5 @@
 
 .container {
 	padding: 40px;
+	perspective: 1000px;
 }
