@@ -1,4 +1,5 @@
 .grid {
+	-webkit-backface-visibility: hidden;
 	display: grid;
 	flex-wrap: wrap;
 	grid-template-columns: repeat(9, 1fr);
