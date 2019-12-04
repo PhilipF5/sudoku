@@ -1,9 +1,8 @@
 .header {
 	color: white;
-	display: flex;
-	justify-content: flex-end;
 	position: absolute;
 	right: 2.5vh;
+	text-align: right;
 	top: 2.5vh;
 }
 
@@ -11,5 +10,4 @@
 	font-family: "Erica One";
 	font-size: 6vh;
 	line-height: 6vh;
-	margin-right: 6vh;
 }
