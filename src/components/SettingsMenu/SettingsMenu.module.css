@@ -8,7 +8,7 @@
 .gearButton {
 	cursor: pointer;
 	display: block;
-	font-size: 48px;
+	font-size: 6vh;
 	transition: color 0.5s linear;
 }
 
@@ -19,11 +19,11 @@
 .menu {
 	background-color: #0007;
 	border: 1px solid var(--theme-color);
-	bottom: 48px;
+	bottom: 6vh;
 	font-size: 20px;
 	padding: 10px;
 	position: absolute;
-	right: 48px;
+	right: 6vh;
 }
 
 .buttons {

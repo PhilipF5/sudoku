@@ -3,17 +3,17 @@
 	align-items: center;
 	background-color: transparent;
 	border: 2px solid var(--theme-color);
-	box-shadow: 0 0 5px 5px var(--box-shadow-color), 0 0 5px 5px var(--box-shadow-color) inset;
+	box-shadow: 0 0 0.625vh 0.625vh var(--box-shadow-color), 0 0 0.625vh 0.625vh var(--box-shadow-color) inset;
 	box-sizing: border-box;
 	color: white;
 	cursor: pointer;
 	display: flex;
 	filter: hue-rotate(0deg);
 	font-size: 7vh;
-	height: 8vh;
+	height: 9vh;
 	justify-content: center;
 	transform-origin: center;
-	width: 8vh;
+	width: 9vh;
 }
 
 .square:not(.prefilled) {

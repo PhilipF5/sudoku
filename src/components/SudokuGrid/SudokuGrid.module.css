@@ -4,14 +4,19 @@
 	flex-wrap: wrap;
 	grid-template-columns: repeat(9, 1fr);
 	grid-template-rows: repeat(9, 1fr);
-	height: 75vh;
+	height: 86vh;
 	justify-content: center;
 	perspective: 500px;
 	place-items: center;
-	width: 75vh;
+	width: 86vh;
 }
 
 .container {
-	padding: 40px;
 	perspective: 1000px;
+}
+
+@media (min-width: 1024px) {
+	.container {
+		padding: 40px;
+	}
 }
