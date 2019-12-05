@@ -106,7 +106,7 @@ const SudokuApp = () => {
 const defaultSettings = {
 	theme: "green",
 	difficulty: "easy",
-	tiltFactor: "heavy",
+	tiltFactor: "light",
 	showCompletions: true,
 	showDuplicates: false,
 	showHints: false,
