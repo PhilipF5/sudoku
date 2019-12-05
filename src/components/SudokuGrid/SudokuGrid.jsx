@@ -39,26 +39,26 @@ const SudokuGrid = ({
 		}
 	};
 
-	const handleMouseMove = (e) => {
-		if (selectedSquare === null && !solved) {
+	const handlePointerMove = (e) => {
+		if (e.pointerType === "mouse" && selectedSquare === null && !solved) {
 			updateGridTilt(e.clientX, e.clientY);
 		}
 	};
-
-	const handleSelectSquare = useCallback(
-		(square, x, y) => {
-			if (!solved) {
-				updateGridTilt(x, y);
-				onSelectSquare(square);
-			}
-		},
-		[onSelectSquare, solved, updateGridTilt],
-	);
 
 	const resetGridTilt = useCallback(() => {
 		gsap.killTweensOf(`.${styles.grid}`);
 		gsap.to(`.${styles.grid}`, { duration: 0.5, rotationX: 0, rotationY: 0, ease: "power1.easeOut" });
 	}, []);
+
+	const handleSelectSquare = useCallback(
+		(square, x, y) => {
+			if (!solved) {
+				square !== null ? updateGridTilt(x, y) : resetGridTilt();
+				onSelectSquare(square);
+			}
+		},
+		[onSelectSquare, solved, updateGridTilt, resetGridTilt],
+	);
 
 	useEffect(() => {
 		solved && resetGridTilt();
@@ -66,7 +66,7 @@ const SudokuGrid = ({
 
 	return (
 		<div className={styles.container} onMouseLeave={handleMouseLeave}>
-			<div className={styles.grid} ref={gridRef} onMouseMove={handleMouseMove}>
+			<div className={styles.grid} ref={gridRef} onPointerMove={handlePointerMove}>
 				{gridValues.map((value, index, array) => {
 					const pos = positionOf(index);
 					return (
