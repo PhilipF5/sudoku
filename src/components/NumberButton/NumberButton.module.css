@@ -5,9 +5,11 @@
 	color: var(--theme-color);
 	cursor: pointer;
 	display: flex;
-	font-size: 4vh;
+	font-size: 2em;
 	height: 9vh;
 	justify-content: center;
+	min-height: 50px;
+	min-width: 50px;
 	opacity: inherit;
 	transition: background-color 0.5s linear, border-color 0.5s linear, color 0.5s linear;
 	width: 9vh;

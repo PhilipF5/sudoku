@@ -1,5 +1,5 @@
 .container {
-	font-size: 2vh;
+	font-size: 0.8em;
 	text-align: right;
 }
 
@@ -12,4 +12,10 @@
 
 .container a:hover {
 	color: white;
+}
+
+@media (min-height: 768px) {
+	.container {
+		font-size: 1em;
+	}
 }
