@@ -15,7 +15,7 @@
 	width: 9vh;
 }
 
-.number:hover {
+#root > div:not(:global(.isTouch)) .number:hover {
 	background-color: var(--theme-color);
 	color: black;
 }

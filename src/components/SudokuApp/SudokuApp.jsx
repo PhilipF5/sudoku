@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { usePuzzle, useStorage } from "../../hooks";
@@ -16,6 +17,7 @@ const SudokuApp = () => {
 	);
 	const [selectedSquare, setSelectedSquare] = useState(null);
 	const [loaded, setLoaded] = useState(false);
+	const [isTouch, setIsTouch] = useState(false);
 
 	const updateSettings = useCallback(
 		(newSettings) => {
@@ -60,6 +62,8 @@ const SudokuApp = () => {
 		reset();
 	}, [reset, solved]);
 
+	const handleTouch = useCallback(() => setIsTouch(true), []);
+
 	useEffect(() => {
 		solved && animations.animatePuzzleSolved();
 	}, [solved]);
@@ -76,7 +80,7 @@ const SudokuApp = () => {
 	});
 
 	return (
-		<div className={styles.app} style={themeStyles}>
+		<div className={classNames(styles.app, { isTouch })} style={themeStyles} onTouchStart={handleTouch}>
 			<Header />
 			<div className={styles.layout}>
 				<SudokuGrid
