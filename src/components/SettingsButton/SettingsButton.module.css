@@ -4,6 +4,6 @@
 	transition: color 0.5s linear;
 }
 
-.button:hover {
+#root > div:not(:global(.isTouch)) .button:hover {
 	color: white;
 }
