@@ -20,7 +20,7 @@
 	text-shadow: 0 0 0.2em #ffffff80;
 }
 
-.square:hover {
+#root > div:not(:global(.isTouch)) .square:hover {
 	background-color: #ffffff33;
 }
 
