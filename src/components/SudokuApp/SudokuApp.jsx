@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { usePuzzle, useStorage } from "../../hooks";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
+import PortraitWarning from "../PortraitWarning/PortraitWarning";
 import SettingsMenu from "../SettingsMenu/SettingsMenu";
 import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import * as animations from "./SudokuApp.animations";
@@ -103,6 +104,7 @@ const SudokuApp = () => {
 				onReset={handleReset}
 				onNewGame={() => createNewPuzzle(settings.difficulty)}
 			/>
+			<PortraitWarning />
 		</div>
 	);
 };
