@@ -16,7 +16,7 @@ Several different settings are available to customize the game experience and di
 | ------- | ----------- |
 | Theme | Change the primary color of the UI. Options are blue, green, pink, and yellow. Default is green. |
 | Difficulty | Change the difficulty of the generated puzzle. This refers to the on-paper difficulty of the puzzle, and does not take any helper features into account. Options are easy, medium, and hard. Default is easy. |
-| Tilt Factor | Adjust how sharply the grid tilts when you move the mouse around it. Options are none, light, and heavy. Default is heavy. |
+| Tilt Factor | Adjust how sharply the grid tilts when you move the mouse around it. Options are none, light, and heavy. Default is light. |
 | Show Completions | Briefly highlight a row, column, or region when that section has been completed correctly. Default is true. |
 | Show Duplicates | Highlight anywhere there are two of the same digit in a single row, column, or region. Default is false. |
 | Show Hints | Show all the possible digits for each square without duplicating what's already on the board. Default is false. |
@@ -25,3 +25,10 @@ Several different settings are available to customize the game experience and di
 ## Tech Stack
 
 This is a [React](https://reactjs.org) app bootstrapped with [Create React App](https://create-react-app.dev). Styles are written using [CSS Modules](https://github.com/css-modules/css-modules). Animations are written using [GreenSock](https://greensock.com). Puzzle generation is handled by the [sudoku-generator](https://github.com/jlguenego/sudoku-generator) JS library wrriten by [Jean-Louis GUENEGO](https://github.com/jlguenego).
+
+## Run Locally
+
+```sh
+$ npm ci
+$ npm start
+```
