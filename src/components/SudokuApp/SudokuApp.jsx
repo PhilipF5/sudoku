@@ -11,8 +11,10 @@ import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import * as animations from "./SudokuApp.animations";
 import styles from "./SudokuApp.module.css";
 
+const savedSettings = storage.get("settings");
+
 const SudokuApp = () => {
-	const [settings, setSettings] = useState(storage.get("settings") || defaultSettings);
+	const [settings, setSettings] = useState(savedSettings || defaultSettings);
 	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(
 		settings.difficulty,
 	);
@@ -61,6 +63,10 @@ const SudokuApp = () => {
 	}, [reset, solved]);
 
 	const handleTouch = useCallback(() => setIsTouch(true), []);
+
+	useEffect(() => {
+		createNewPuzzle(settings.difficulty);
+	}, []);
 
 	useEffect(() => {
 		solved && animations.animatePuzzleSolved();

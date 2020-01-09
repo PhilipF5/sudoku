@@ -2,8 +2,11 @@ import { SudokuSolver } from "@jlguenego/sudoku-generator";
 import { useEffect, useMemo, useState } from "react";
 import { valuesInColumn, valuesInRegion, valuesInRow } from "../utilities";
 
-export const usePuzzle = (initialDifficulty = "easy") => {
-	const [{ solution, start }, setPuzzle] = useState(generatePuzzle(initialDifficulty));
+export const usePuzzle = () => {
+	const [{ solution, start }, setPuzzle] = useState({
+		solution: Array.apply(null, Array(81)),
+		start: Array.apply(null, Array(81)),
+	});
 	const [gridValues, setGridValues] = useState(start);
 	const [solved, setSolved] = useState(false);
 	const [puzzleId, setPuzzleId] = useState(0);
@@ -49,6 +52,7 @@ const difficulty = {
 };
 
 const generatePuzzle = (level = "easy") => {
+	console.log("generating");
 	const solution = SudokuSolver.generate();
 	return {
 		solution: solution.flat(),
