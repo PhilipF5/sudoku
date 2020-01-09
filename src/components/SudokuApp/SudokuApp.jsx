@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import { gsap } from "gsap";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { usePuzzle, useStorage } from "../../hooks";
+import { usePuzzle } from "../../hooks";
+import { storage } from "../../utilities";
 import Header from "../Header/Header";
 import NumberPicker from "../NumberPicker/NumberPicker";
 import PortraitWarning from "../PortraitWarning/PortraitWarning";
@@ -11,7 +12,6 @@ import * as animations from "./SudokuApp.animations";
 import styles from "./SudokuApp.module.css";
 
 const SudokuApp = () => {
-	const storage = useStorage();
 	const [settings, setSettings] = useState(storage.get("settings") || defaultSettings);
 	const { gridValues, setGridValues, solution, solved, createNewPuzzle, reset, puzzleId } = usePuzzle(
 		settings.difficulty,
@@ -20,16 +20,13 @@ const SudokuApp = () => {
 	const [loaded, setLoaded] = useState(false);
 	const [isTouch, setIsTouch] = useState(false);
 
-	const updateSettings = useCallback(
-		(newSettings) => {
-			setSettings((oldSettings) => {
-				const mergedSettings = { ...oldSettings, ...newSettings };
-				storage.set("settings", mergedSettings);
-				return mergedSettings;
-			});
-		},
-		[storage],
-	);
+	const updateSettings = useCallback((newSettings) => {
+		setSettings((oldSettings) => {
+			const mergedSettings = { ...oldSettings, ...newSettings };
+			storage.set("settings", mergedSettings);
+			return mergedSettings;
+		});
+	}, []);
 
 	const setSquare = useCallback(
 		(value) => {
@@ -78,7 +75,7 @@ const SudokuApp = () => {
 		if (settings && settings !== defaultSettings) {
 			storage.set("settings", settings);
 		}
-	});
+	}, [settings]);
 
 	return (
 		<div className={classNames(styles.app, { isTouch })} style={themeStyles} onTouchStart={handleTouch}>
