@@ -55,9 +55,7 @@ const SudokuApp = () => {
 
 	const handleReset = useCallback(() => {
 		if (solved) {
-			gsap.getById("solvedAnimation")
-				.pause(0)
-				.kill();
+			gsap.getById("solvedAnimation").pause(0).kill();
 		}
 		reset();
 	}, [reset, solved]);
@@ -66,6 +64,7 @@ const SudokuApp = () => {
 
 	useEffect(() => {
 		createNewPuzzle(settings.difficulty);
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
