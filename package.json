@@ -21,20 +21,20 @@
 		"node": ">=10.9"
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "1.2.25",
-		"@fortawesome/free-solid-svg-icons": "5.11.2",
-		"@fortawesome/react-fontawesome": "0.1.7",
+		"@fortawesome/fontawesome-svg-core": "6.4.0",
+		"@fortawesome/free-solid-svg-icons": "6.4.0",
+		"@fortawesome/react-fontawesome": "0.2.0",
 		"@jlguenego/sudoku-generator": "^1.0.7",
-		"classnames": "2.2.6",
-		"gsap": "3.0.1",
-		"react": "16.11.0",
-		"react-dom": "16.11.0",
-		"react-scripts": "3.2.0",
-		"typeface-erica-one": "0.0.71"
+		"classnames": "2.3.2",
+		"gsap": "3.11.5",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-scripts": "5.0.1",
+		"typeface-erica-one": "1.1.13"
 	},
 	"devDependencies": {
 		"husky": "3.0.9",
-		"prettier": "1.19.1",
-		"pretty-quick": "2.0.1"
+		"prettier": "2.8.7",
+		"pretty-quick": "3.1.3"
 	}
 }
