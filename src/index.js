@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "typeface-erica-one";
 import SudokuApp from "./components/SudokuApp/SudokuApp";
 import "./index.css";
 
-ReactDOM.render(<SudokuApp />, document.getElementById("root"));
+const root = createRoot(document.getElementById("root"));
+root.render(<SudokuApp />);
