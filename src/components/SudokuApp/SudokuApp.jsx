@@ -60,6 +60,16 @@ const SudokuApp = () => {
 		reset();
 	}, [reset, solved]);
 
+	const handleNewGame = useCallback(
+		(difficulty) => {
+			if (solved) {
+				gsap.getById("solvedAnimation").pause(0).kill();
+			}
+			createNewPuzzle(difficulty);
+		},
+		[createNewPuzzle, solved],
+	);
+
 	const handleTouch = useCallback(() => setIsTouch(true), []);
 
 	useEffect(() => {
@@ -104,7 +114,7 @@ const SudokuApp = () => {
 				settings={settings}
 				setSettings={updateSettings}
 				onReset={handleReset}
-				onNewGame={() => createNewPuzzle(settings.difficulty)}
+				onNewGame={() => handleNewGame(settings.difficulty)}
 			/>
 			<PortraitWarning />
 		</div>
