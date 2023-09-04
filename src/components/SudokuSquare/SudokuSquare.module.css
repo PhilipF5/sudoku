@@ -12,6 +12,7 @@
 	font-size: 7vh;
 	height: 9vh;
 	justify-content: center;
+	position: relative;
 	transform-origin: center;
 	width: 9vh;
 }
